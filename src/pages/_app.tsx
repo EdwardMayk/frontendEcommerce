@@ -1,6 +1,21 @@
+import Users from '../components/users'
 import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+// @ts-nocheck
+/** @jsxImportSource @emotion/react */
+// @jsxImportSource @emotion/react
+
+const queryClient = new ApolloClient({
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache()
+});
+
+
+export default function App() {
+  return (
+    <ApolloProvider client={queryClient}>
+      <Users />
+    </ApolloProvider>
+  )
 }
