@@ -1,6 +1,8 @@
-import Users from '../components/users'
+import React, { FC } from "react";
 import '@/styles/globals.css'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import Navbar from "@/components/navbar";
+import type { AppProps } from "next/app";
 
 // @ts-nocheck
 /** @jsxImportSource @emotion/react */
@@ -11,11 +13,11 @@ const queryClient = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-
-export default function App() {
+const MyApp: FC<AppProps> = ({ Component, pageProps }: any) => {
   return (
     <ApolloProvider client={queryClient}>
-      <Users />
+        <Component {...pageProps} />
     </ApolloProvider>
-  )
+  );
 }
+export default MyApp;
