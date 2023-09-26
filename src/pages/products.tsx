@@ -39,7 +39,7 @@ function Products() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {productos.map((producto) => (
           <div key={producto.id} className="bg-white rounded-lg overflow-hidden shadow-lg">
-            <img src={producto.imagen} alt={producto.nombre} className="w-full h-48 object-cover" />
+            {/* <img src={producto.imagen} alt={producto.nombre} className="w-full h-48 object-cover" /> */}
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
               <p className="text-gray-600">${producto.precio.toFixed(2)}</p>
