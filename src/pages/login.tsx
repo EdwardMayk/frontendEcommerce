@@ -4,6 +4,7 @@ import {  useNavigate } from 'react-router-dom'; // Importa useHistory para la r
 
 import { useRouter } from "next/navigation";
 import { useLoginMutation } from '../../graphql/generated/schema';
+import Register from './register';
 
 
 
@@ -38,17 +39,23 @@ function Login() {
 
       if (response.data && response.data.login.status === 'ok') {
         console.log('Inicio de sesión exitoso');
-        router.push("/dashboard");
+        const userRole = response.data.login.; // Obtén el rol del usuario
 
+        if (userRole === 'admin') {
+          // Redirige a la página de Dashboard solo si es un administrador
+          router.push('/dashboard');
+        } else {
+          console.error('Acceso denegado: No eres un administrador');
+        }
       } else {
         console.error('Inicio de sesión fallido');
       }
     } catch (error) {
       console.error('Error en la mutación de inicio de sesión:', error);
-      console.log('Respuesta del servidor:', ); 
     }
   };
   return (
+
     <div className="flex flex-col items-center md:flex-row md:h-screen">
       <div className="flex items-center justify-center w-full md:w-1/2">
         <Image src="/images/cat.jpeg" alt="Login Image" width={400} height={600} />
@@ -106,6 +113,12 @@ function Login() {
           {data && data.login.status === 'ok' && (
             <p className="text-green-500">Inicio de sesión exitoso</p>
         )} {/* Mensaje de éxito */}
+         <p className="mt-4">
+            ¿No tienes una cuenta?{' '}
+            <a href="/register" className="text-indigo-500 hover:underline">
+              Regístrate aquí
+            </a>
+          </p>
         </div>
       </div>
     </div>

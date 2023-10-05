@@ -1,0 +1,8 @@
+mutation Register($args: RegisterInput!) {
+  register(args: $args) {
+    id
+    email
+    name
+    role
+  }
+}
