@@ -49,12 +49,18 @@ export type Mutation = {
   __typename?: 'Mutation';
   addMessage: Scalars['String']['output'];
   createUser: User;
+  createUserAdmin: User;
   login: SigninResponse;
   removeUserActivity: UserActivity;
 };
 
 
 export type MutationCreateUserArgs = {
+  createUserInput: CreateUserInput;
+};
+
+
+export type MutationCreateUserAdminArgs = {
   createUserInput: CreateUserInput;
 };
 
@@ -94,9 +100,16 @@ export type Product = {
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String']['output'];
+  role: Role;
+  roles: Array<Role>;
   user: User;
   userActivity: UserActivity;
   users: Array<User>;
+};
+
+
+export type QueryRoleArgs = {
+  value: Scalars['String']['input'];
 };
 
 
@@ -122,6 +135,7 @@ export type Role = {
 
 export type SigninResponse = {
   __typename?: 'SigninResponse';
+  role: Scalars['String']['output'];
   status: Scalars['String']['output'];
 };
 
@@ -164,7 +178,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SigninResponse', status: string } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SigninResponse', status: string, role: string } };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -176,6 +190,7 @@ export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(args: {email: $email, password: $password}) {
     status
+    role
   }
 }
     `;

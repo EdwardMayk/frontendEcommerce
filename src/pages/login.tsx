@@ -39,13 +39,13 @@ function Login() {
 
       if (response.data && response.data.login.status === 'ok') {
         console.log('Inicio de sesión exitoso');
-        const userRole = response.data.login.; // Obtén el rol del usuario
+        const userRole = response.data.login.role; 
+        console.log(document.cookie);
 
         if (userRole === 'admin') {
-          // Redirige a la página de Dashboard solo si es un administrador
           router.push('/dashboard');
         } else {
-          console.error('Acceso denegado: No eres un administrador');
+          router.push('/products');
         }
       } else {
         console.error('Inicio de sesión fallido');
@@ -115,9 +115,6 @@ function Login() {
         )} {/* Mensaje de éxito */}
          <p className="mt-4">
             ¿No tienes una cuenta?{' '}
-            <a href="/register" className="text-indigo-500 hover:underline">
-              Regístrate aquí
-            </a>
           </p>
         </div>
       </div>
