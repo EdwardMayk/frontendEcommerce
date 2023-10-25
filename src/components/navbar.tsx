@@ -36,7 +36,7 @@ function Navbar() {
             <Link href="/login" className="text-gray-800 px-4 py-2 rounded">
               Iniciar Sesion
             </Link>
-            <Link href="/signup" className="bg-blue-700 text-white px-4 py-2 rounded-full">
+            <Link href="/register" className="bg-blue-700 text-white px-4 py-2 rounded-full">
               Registrarse
             </Link>
           </div>

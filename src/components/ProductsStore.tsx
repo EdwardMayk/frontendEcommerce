@@ -1,41 +1,18 @@
+import React from 'react';
+import { Image } from '@nextui-org/react';
+import {  useGetAllProductsQuery } from '../../graphql/generated/schema';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Image } from '@nextui-org/react';
-import React from 'react';
 
-const ProductsStore = () => {
-  const products = [
-    {
-      name: 'Original Apple Iphone 12 Cellphone 512GB',
-      price: '$1,000,000',
-      condition: 'Marca nueva',
-    },
-    {
-      name: 'Original Apple Iphone 12 Cellphone 512GB',
-      price: '$1,000,000',
-      condition: 'Marca nueva',
-    },
-    {
-      name: 'Original Apple Iphone 12 Cellphone 512GB',
-      price: '$1,000,000',
-      condition: 'Marca nueva',
-    },
-    {
-      name: 'Original Apple Iphone 12 Cellphone 512GB',
-      price: '$1,000,000',
-      condition: 'Marca nueva',
-    },
-    {
-      name: 'Original Apple Iphone 12 Cellphone 512GB',
-      price: '$1,000,000',
-      condition: 'Marca nueva',
-    },
-    {
-      name: 'Original Apple Iphone 12 Cellphone 512GB',
-      price: '$1,000,000',
-      condition: 'Marca nueva',
-    },
-  ];
+const ProductsStore: React.FC = () => {
+
+  const { loading, error, data } = useGetAllProductsQuery();
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const products = data?.products || [];
+  console.log(products);
 
   return (
     <div className="ml-6">
@@ -43,10 +20,10 @@ const ProductsStore = () => {
         <span className="text-left">Productos encontrados</span>
         <span className="text-right">Limpiar Filtros</span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4 ml-3 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4 ml-3">
         {products.map((product, index) => (
-          <div key={index} className="p-4 border rounded-lg bg-white">
-            <Image src="images/phone1.png" alt="image" />
+          <div key={index} className="p-4 border rounded-lg bg-white items-center " >
+            <Image src={product.image} alt="image"  />
             <div className="bg-gray-300 h-1 mt-4"></div>
             <div className="mt-4">
               <div className="text-xm">{product.name}</div>
@@ -58,7 +35,7 @@ const ProductsStore = () => {
                   </div>
                 </div>
               </div>
-              <div className="text-green-600">{product.condition}</div>
+              <div className="text-green-600">Marca nueva</div>
             </div>
           </div>
         ))}

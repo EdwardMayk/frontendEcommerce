@@ -1,0 +1,19 @@
+input CreateProductInput {
+  name: String!
+  description: String!
+  price: Float!
+  stock: Int!
+  image: String!
+  brand: String!
+}
+
+mutation CreateProduct($args: CreateProductInput!) {
+  createProduct(args: $args) {
+    uuid
+    name
+    description
+    price
+    image
+    brand
+  }
+}

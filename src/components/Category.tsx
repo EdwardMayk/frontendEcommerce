@@ -55,7 +55,7 @@ const filters: FilterData[] = [
 
 const Category: React.FC = () => {
   return (
-    <div className="border border-gray-200 p-4 flex space-x-4 bg-white ml-auto mt-6 mr-auto rounded-xl" style={{ width: "60%" }} >
+    <div className="border border-gray-200 p-4 flex space-x-4 bg-white ml-auto mt-6 mr-auto rounded-xl" style={{ width: "70%" }} >
       {filters.map((filter, index) => (
         <Filter key={index} title={filter.title} options={filter.options} />
       ))}

@@ -1,0 +1,10 @@
+query getAllProducts{
+  products{
+    uuid
+    name
+    description
+    price
+    image
+    brand
+  }
+}

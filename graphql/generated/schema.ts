@@ -27,6 +27,21 @@ export type Category = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type CreateProductInput = {
+  /** Brand of product */
+  brand: Scalars['String']['input'];
+  /** Description of product */
+  description: Scalars['String']['input'];
+  /** Image of product */
+  image: Scalars['String']['input'];
+  /** Name of product */
+  name: Scalars['String']['input'];
+  /** Price of product */
+  price: Scalars['Float']['input'];
+  /** Stock of product */
+  stock: Scalars['Float']['input'];
+};
+
 export type CreateUserInput = {
   /** UUID of user creator */
   createdBy: Scalars['String']['input'];
@@ -48,10 +63,18 @@ export type LoginAuthDto = {
 export type Mutation = {
   __typename?: 'Mutation';
   addMessage: Scalars['String']['output'];
+  createProduct: Product;
   createUser: User;
   createUserAdmin: User;
   login: SigninResponse;
+  removeProduct: Product;
   removeUserActivity: UserActivity;
+  updateProduct: Product;
+};
+
+
+export type MutationCreateProductArgs = {
+  args: CreateProductInput;
 };
 
 
@@ -70,8 +93,18 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationRemoveProductArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationRemoveUserActivityArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateProductArgs = {
+  updateProductInput: UpdateProductInput;
 };
 
 export type Order = {
@@ -87,24 +120,35 @@ export type Order = {
 
 export type Product = {
   __typename?: 'Product';
+  brand: Scalars['String']['output'];
   category: Category;
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
+  image: Scalars['String']['output'];
   name: Scalars['String']['output'];
   orders: Order;
   price: Scalars['Float']['output'];
+  stock: Scalars['Int']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  uuid: Scalars['String']['output'];
 };
 
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String']['output'];
+  product: Product;
+  products: Array<Product>;
   role: Role;
   roles: Array<Role>;
   user: User;
   userActivity: UserActivity;
   users: Array<User>;
+};
+
+
+export type QueryProductArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -144,6 +188,22 @@ export type Subscription = {
   messageAdded: Scalars['String']['output'];
 };
 
+export type UpdateProductInput = {
+  /** Brand of product */
+  brand?: InputMaybe<Scalars['String']['input']>;
+  /** Description of product */
+  description?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['Int']['input'];
+  /** Image of product */
+  image?: InputMaybe<Scalars['String']['input']>;
+  /** Name of product */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Price of product */
+  price?: InputMaybe<Scalars['Float']['input']>;
+  /** Stock of product */
+  stock?: InputMaybe<Scalars['Float']['input']>;
+};
+
 export type User = {
   __typename?: 'User';
   createdAt: Scalars['DateTime']['output'];
@@ -179,6 +239,18 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SigninResponse', status: string, role: string } };
+
+export type CreateProductMutationVariables = Exact<{
+  args: CreateProductInput;
+}>;
+
+
+export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', uuid: string, name: string, description?: string | null, price: number, image: string, brand: string } };
+
+export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', uuid: string, name: string, description?: string | null, price: number, image: string, brand: string }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -221,6 +293,83 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const CreateProductDocument = gql`
+    mutation CreateProduct($args: CreateProductInput!) {
+  createProduct(args: $args) {
+    uuid
+    name
+    description
+    price
+    image
+    brand
+  }
+}
+    `;
+export type CreateProductMutationFn = Apollo.MutationFunction<CreateProductMutation, CreateProductMutationVariables>;
+
+/**
+ * __useCreateProductMutation__
+ *
+ * To run a mutation, you first call `useCreateProductMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateProductMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createProductMutation, { data, loading, error }] = useCreateProductMutation({
+ *   variables: {
+ *      args: // value for 'args'
+ *   },
+ * });
+ */
+export function useCreateProductMutation(baseOptions?: Apollo.MutationHookOptions<CreateProductMutation, CreateProductMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateProductMutation, CreateProductMutationVariables>(CreateProductDocument, options);
+      }
+export type CreateProductMutationHookResult = ReturnType<typeof useCreateProductMutation>;
+export type CreateProductMutationResult = Apollo.MutationResult<CreateProductMutation>;
+export type CreateProductMutationOptions = Apollo.BaseMutationOptions<CreateProductMutation, CreateProductMutationVariables>;
+export const GetAllProductsDocument = gql`
+    query getAllProducts {
+  products {
+    uuid
+    name
+    description
+    price
+    image
+    brand
+  }
+}
+    `;
+
+/**
+ * __useGetAllProductsQuery__
+ *
+ * To run a query within a React component, call `useGetAllProductsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllProductsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllProductsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllProductsQuery, GetAllProductsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllProductsQuery, GetAllProductsQueryVariables>(GetAllProductsDocument, options);
+      }
+export function useGetAllProductsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllProductsQuery, GetAllProductsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllProductsQuery, GetAllProductsQueryVariables>(GetAllProductsDocument, options);
+        }
+export type GetAllProductsQueryHookResult = ReturnType<typeof useGetAllProductsQuery>;
+export type GetAllProductsLazyQueryHookResult = ReturnType<typeof useGetAllProductsLazyQuery>;
+export type GetAllProductsQueryResult = Apollo.QueryResult<GetAllProductsQuery, GetAllProductsQueryVariables>;
 export const GetUsersDocument = gql`
     query GetUsers {
   users {
