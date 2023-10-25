@@ -5,6 +5,8 @@ import {  useNavigate } from 'react-router-dom'; // Importa useHistory para la r
 import { useRouter } from "next/navigation";
 import { useLoginMutation } from '../../graphql/generated/schema';
 import Register from './register';
+import Navbar from '@/components/navbar';
+
 
 
 
@@ -55,6 +57,8 @@ function Login() {
     }
   };
   return (
+    <>
+    <Navbar />
 
     <div className="flex flex-col items-center md:flex-row md:h-screen">
       <div className="flex items-center justify-center w-full md:w-1/2">
@@ -119,6 +123,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
