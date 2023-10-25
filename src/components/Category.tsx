@@ -10,7 +10,7 @@ type FilterData = {
 
 const filters: FilterData[] = [
   {
-    title: 'Category',
+    title: 'Categoria',
     options: [
       { value: 'option1', label: 'Opción 1' },
       { value: 'option2', label: 'Opción 2' },
@@ -18,7 +18,7 @@ const filters: FilterData[] = [
     ],
   },
   {
-    title: 'Sub Category',
+    title: 'Sub Categoria',
     options: [
       { value: 'subOption1', label: 'Sub Opción 1' },
       { value: 'subOption2', label: 'Sub Opción 2' },
@@ -26,7 +26,7 @@ const filters: FilterData[] = [
     ],
   },
   {
-    title: 'Brand',
+    title: 'Marca',
     options: [
       { value: 'brand1', label: 'Marca 1' },
       { value: 'brand2', label: 'Marca 2' },
@@ -34,7 +34,7 @@ const filters: FilterData[] = [
     ],
   },
   {
-    title: 'Condition',
+    title: 'Condicion',
     options: [
       { value: 'condition1', label: 'Condition 1' },
       { value: 'condition2', label: 'Condition 2' },
@@ -42,7 +42,7 @@ const filters: FilterData[] = [
     ],
   },
   {
-    title: 'Price',
+    title: 'Precios',
     options: [
       { value: 'price1', label: 'Price 1' },
       { value: 'price2', label: 'Price 2' },
@@ -55,7 +55,7 @@ const filters: FilterData[] = [
 
 const Category: React.FC = () => {
   return (
-    <div className="border border-gray-200 p-4 flex space-x-4 bg-white ml-auto mt-6 mr-auto" style={{ width: "60%" }}>
+    <div className="border border-gray-200 p-4 flex space-x-4 bg-white ml-auto mt-6 mr-auto rounded-xl" style={{ width: "60%" }} >
       {filters.map((filter, index) => (
         <Filter key={index} title={filter.title} options={filter.options} />
       ))}

@@ -2,9 +2,9 @@ import React from 'react';
 
 const SearchBar = () => {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto mt-6">
       <form className="flex items-center">
-        <label htmlFor="voice-search" className="sr-only">Search</label>
+        <label htmlFor="voice-search" className="sr-only">Buscar</label>
         <div className="relative w-full">
           <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,7 @@ const SearchBar = () => {
             type="text"
             id="voice-search"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400 focus:placeholder-gray-500"
-            placeholder="Search Mockups, Logos, Design Templates..."
+            placeholder="Buscar procesadores, montiores, teclados, audifonos."
             required
           />
           <button type="button" className="flex absolute inset-y-0 right-0 items-center pr-3">
@@ -28,7 +28,7 @@ const SearchBar = () => {
           <svg className="mr-2 -ml-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
-          Search
+          Buscar
         </button>
       </form>
     </div>

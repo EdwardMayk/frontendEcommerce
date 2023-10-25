@@ -13,12 +13,12 @@ function Navbar() {
           <ul className="flex space-x-10">
             <li>
               <Link href="/" className="hover:text-gray-200">
-                Home
+                Incio
               </Link>
             </li>
             <li>
               <Link href="/about" className="hover:text-gray-200">
-                About
+                Nosotros
               </Link>
             </li>
             <li>
@@ -34,10 +34,10 @@ function Navbar() {
           </ul>
           <div className="flex items-center space-x-10">
             <Link href="/login" className="text-gray-800 px-4 py-2 rounded">
-              Sign In
+              Iniciar Sesion
             </Link>
             <Link href="/signup" className="bg-blue-700 text-white px-4 py-2 rounded-full">
-              Sign Up
+              Registrarse
             </Link>
           </div>
         </div>
