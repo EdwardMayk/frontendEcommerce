@@ -1,64 +1,55 @@
+import { faBriefcase, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Image } from '@nextui-org/react';
+import React from 'react';
 import Navbar from '@/components/navbar';
-import React, { useState } from 'react';
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
+interface ProductProps {
+  title: string;
+  description: string;
+  price: string;
+  code: string;
 }
 
-const FavoriteProducts: React.FC = () => {
-  const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
-  
-  // Función para agregar un producto a la lista de favoritos
-  const addToFavorites = (product: Product) => {
-    if (!favoriteProducts.some((p) => p.id === product.id)) {
-      setFavoriteProducts([...favoriteProducts, product]);
-    }
-  };
-
-  // Función para eliminar un producto de la lista de favoritos
-  const removeFromFavorites = (productId: number) => {
-    const updatedFavorites = favoriteProducts.filter((product) => product.id !== productId);
-    setFavoriteProducts(updatedFavorites);
-  };
-
+const favorite: React.FC = () => {
   return (
     <>
-    <Navbar />
-    
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-4">Productos Favoritos</h2>
-      <ul className="space-y-2">
-        {favoriteProducts.map((product) => (
-          <li key={product.id} className="bg-white p-2 rounded-lg shadow-md flex justify-between items-center">
-            <span>{product.name} - ${product.price}</span>
-            <button onClick={() => removeFromFavorites(product.id)} className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
-      <h3 className="text-xl font-semibold mt-4">Lista de Productos</h3>
-      <ul className="space-y-2">
-        {/* Aquí deberías renderizar una lista de productos */}
-        <li className="bg-white p-2 rounded-lg shadow-md flex justify-between items-center">
-          <span>Producto 1 - $10</span>
-          <button onClick={() => addToFavorites({ id: 1, name: 'Producto 1', price: 10 })} className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-            Agregar a Favoritos
-          </button>
-        </li>
-        <li className="bg-white p-2 rounded-lg shadow-md flex justify-between items-center">
-          <span>Producto 2 - $20</span>
-          <button onClick={() => addToFavorites({ id: 2, name: 'Producto 2', price: 20 })} className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-            Agregar a Favoritos
-          </button>
-        </li>
-        {/* Agrega más productos aquí */}
-      </ul>
-    </div>
+      <Navbar />
+      <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
+        <div className="text-center mb-8 text-extrabold">
+          <h1 className="text-2xl font-semibold">FAVORITOS</h1>
+        </div>
+
+        {/* Agregar más elementos de productos aquí */}
+        <ProductCard title="Iphone 12 Pro max 216gb" description="Oversized linen shirt" price="$1,000.00" code="13123" />
+
+        <ProductCard title="Otro producto" description="Descripción del otro producto" price="$999.99" code="56789" />
+
+        {/* Fin de elementos de productos */}
+      </div>
     </>
   );
 };
 
-export default FavoriteProducts;
+const ProductCard: React.FC<ProductProps> = ({ title, description, price, code }) => (
+  <div className="rounded-xl w-400 flex p-4 mx-auto my-8" style={{ backgroundColor: "#faf9f8", width: "800px" }}>
+    <div className="">
+      <Image src="/images/phone1.png" width={300} height={300} />
+    </div>
+    <div className="w-full ml-2">
+      <h1 className="text-xl font-semibold mb-2" style={{ color: '#699b89' }}>{title}</h1>
+      <h2 className="text-base mb-2">{description}</h2>
+      <h2 className="text-base mb-2">Price: {price}</h2>
+      <h2 className="text-base mb-4">Code: {code}</h2>
+      <button className="px-4 py-2 text-white rounded-md flex items-center" style={{ backgroundColor: '#222222' }}>
+        <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+        Mover al carrito de compras
+      </button>
+      <div className="absolute top-0 right-0 m-2 text-gray-500 cursor-pointer">
+        <FontAwesomeIcon icon={faTrash} />
+      </div>
+    </div>
+  </div>
+);
+
+export default favorite;

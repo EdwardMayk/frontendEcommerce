@@ -27,8 +27,8 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <Link href="/catalogo" className="hover:text-gray-200">
-                Catálogo
+              <Link href="/favorite" className="hover:text-gray-200">
+                Favoritos
               </Link>
             </li>
           </ul>
