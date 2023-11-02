@@ -50,21 +50,22 @@ const filters: FilterData[] = [
     ],
   },
 
-  
+
 ];
 
 const Category: React.FC = () => {
   return (
-    <div className="border border-gray-200 p-4 flex space-x-4 bg-white ml-auto mt-6 mr-auto rounded-xl" style={{ width: "70%" }} >
+    <div className="border border-gray-200 p-4 flex space-x-4 bg-white ml-auto mt-6 ml-20 mr-auto rounded-xl" style={{ width: "1000px", marginRight:"20"}}>
       {filters.map((filter, index) => (
         <Filter key={index} title={filter.title} options={filter.options} />
       ))}
-      <span className="text-xs  mb-2">More</span>
+      <span className="text-xs mb-2">More</span>
       <FontAwesomeIcon icon={faFilter} className="text-xs" />
     </div>
+
 
   );
 };
 
-  
+
 export default Category;

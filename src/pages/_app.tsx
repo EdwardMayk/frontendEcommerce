@@ -17,6 +17,8 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }: any) => {
   return (
     <ApolloProvider client={queryClient}>
         <Component {...pageProps} />
+
+
     </ApolloProvider>
   );
 }
