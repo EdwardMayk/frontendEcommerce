@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faHeadphones, faLaptop, faVrCardboard, faMicrochip, faTv, faComputer, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faHeadphones, faLaptop, faVrCardboard, faMicrochip, faTv, faComputer, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 interface Product {
   name: string;
@@ -30,14 +30,13 @@ function GadgetsList() {
         <div className="pb-3 text-sm">
           <span>Incio <FontAwesomeIcon icon={faChevronRight} /> Mini gadgets</span>
         </div>
-        <div className="flex" style={{ gap: "20px" }}>
+        <div className="flex mr-20 " style={{ gap: "20px", overflowX: "auto", maxHeight: "200px"}}>
           {products.map((product, index) => (
             <div
               key={index}
               style={{ width: "200px", height: "100px" }}
-              className={`w-200 h-100 flex flex-col items-start justify-center rounded-lg p-4 cursor-pointer ${
-                selectedProduct === product.name ? "bg-white" : "bg-white"
-              }` }
+              className={`w-200 h-100 flex flex-col items-start justify-center rounded-lg p-4 cursor-pointer ${selectedProduct === product.name ? "bg-white" : "bg-white"
+                }`}
               onClick={(e) => handleProductClick(e, product.name)}
             >
               <FontAwesomeIcon icon={product.icon} className="text-xm ps-5" />
@@ -47,6 +46,9 @@ function GadgetsList() {
             </div>
           ))}
         </div>
+
+
+
       </div>
     </>
   );
