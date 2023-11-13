@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useLoginMutation } from '../../graphql/generated/schema';
 import Register from './register';
 import Navbar from '@/components/navbar';
+import Link from 'next/link';
 
 
 
@@ -59,72 +60,68 @@ function Login() {
   return (
     <>
     <Navbar />
+    
+    <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="mr-8">
+         
+          <Image src="/images/audifonos.png" width={800} height={400} alt="logo_dashboard" />
+        </div>
 
-    <div className="flex flex-col items-center md:flex-row md:h-screen">
-      <div className="flex items-center justify-center w-full md:w-1/2">
-        <Image src="/images/cat.jpeg" alt="Login Image" width={400} height={600} />
-      </div>
-      <div className="flex flex-col items-center justify-center w-full md:w-1/4">
-        <div className="w-full max-w-md space-y-8">
-          <div>
-            <h1 className="text-2xl font-bold">Welcome back!</h1>
-            <p className="mt-2 text-gray-600">
-              Please sign in to your account.
-            </p>
-          </div>
-          <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+        <div className="w-full sm:w-96 bg-white p-8 rounded shadow-md">
+          {/* Contenedor del formulario de inicio de sesión */}
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Inicia sesión</h2>
+          <form className="space-y-4">
             <div>
-              <label htmlFor="email" className="block font-bold text-gray-700">
-                Email address
+              <p className="text-gray-600 mt-4">
+                ¿Aún no tienes una cuenta? <Link href="/registro" className="text-blue-500">Regístrate</Link>
+              </p>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-600">
+                email
               </label>
               <input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                className="w-full px-4 py-3 mt-1 border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-                value={email}
-                onChange={handleEmailChange}
+                type="text"
+                id="username"
+                name="username"
+                className="mt-1 p-2 w-full border rounded-md"
                 required
               />
             </div>
             <div>
-              <label
-                htmlFor="password"
-                className="block font-bold text-gray-700"
-              >
-                Password
+              <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+                Contraseña
               </label>
               <input
-                id="password"
                 type="password"
-                placeholder="Enter your password"
-                className="w-full px-4 py-3 mt-1 border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-                value={password}
-                onChange={handlePasswordChange}
+                id="password"
+                name="password"
+                className="mt-1 p-2 w-full border rounded-md"
                 required
               />
             </div>
-            <div>
-              <button
-                type="submit"
-                className="w-full px-4 py-3 font-bold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700"
-              >
-                Sign In
-              </button>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                name="rememberMe"
+                className="mr-2"
+              />
+              <label htmlFor="rememberMe" className="text-sm text-gray-600">
+                Recuérdame
+              </label>
             </div>
+            <Link href="/olvido-contrasena" className="text-sm text-blue-500">
+              ¿Has olvidado la contraseña?
+            </Link>
+            <button
+              type="submit"
+              className="w-full bg-black text-white py-2 rounded-md hover:bg-green-600"
+            >
+              Iniciar Sesión
+            </button>
           </form>
-          {error && <p className="text-red-500">{error.message}</p>} {/* Aquí se muestra el mensaje de error */}
-          {data && data.login.status === 'ok' && (
-            <p className="text-green-500">Inicio de sesión exitoso</p>
-        )} {/* Mensaje de éxito */}
-         <p className="mt-4">
-            ¿No tienes una cuenta?{' '}
-          </p>
         </div>
       </div>
-    </div>
     </>
   );
 }
-
 export default Login;
