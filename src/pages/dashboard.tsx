@@ -1,11 +1,11 @@
 import Navbar from '@/components/navbar';
 import Image from 'next/image';
 import React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Button } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faStar, faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faLock, faMoneyBill, faPhone, faStar, faTruckFast } from '@fortawesome/free-solid-svg-icons';
 import Product from '@/components/Product';
 
 const Dashboard = () => {
@@ -71,35 +71,50 @@ const Dashboard = () => {
 
             <Product />
 
-            <div className="rounded" style={{ display: 'flex', flexDirection: 'row', backgroundColor: 'gray', width: '900px', padding: '20px', marginLeft: "200px" }}>
-                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', }}>
+            <div className="rounded" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '900px', padding: '20px', marginLeft: "200px" }}>
+                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', backgroundColor: "#F3F5F7", width: "500px", alignItems: "flex-start" }}>
                     <div className='pt-4'>
                         <FontAwesomeIcon icon={faTruckFast} size='2xl' />
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span className='font-bold pt-4 text-xl'>Envío Gratis</span>
-                        <span className='pt-4 text-sm'>A partir de $200</span>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginTop: '10px' }}>
+                        <span className='font-bold text-xl'>Envío Gratis</span>
+                        <span className='text-sm'>A partir de $200</span>
                     </div>
                 </div>
-                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', margin: '0 20px' }}>
+                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', backgroundColor: "#F3F5F7", width: "500px", alignItems: "flex-start" }}>
                     <div className='pt-4'>
-                        <FontAwesomeIcon icon={faTruckFast} size='2xl' />
+                        <FontAwesomeIcon icon={faMoneyBill} size="2xl" />
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span className='font-bold pt-4 text-xl'>Envío Gratis</span>
-                        <span className='pt-4 text-sm'>A partir de $200</span>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginTop: '10px' }}>
+                        <span className='font-bold text-xl'>Devolucion de Dinero</span>
+                        <span className='text-sm'>A partir de $200</span>
                     </div>
                 </div>
-                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', margin: '0 20px' }}>
+                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', backgroundColor: "#F3F5F7", width: "500px", alignItems: "flex-start" }}>
                     <div className='pt-4'>
-                        <FontAwesomeIcon icon={faTruckFast} size='2xl' />
+                        <FontAwesomeIcon icon={faLock} size="2xl" />
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span className='font-bold pt-4 text-xl'>Envío Gratis</span>
-                        <span className='pt-4 text-sm'>A partir de $200</span>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginTop: '10px' }}>
+                        <span className='font-bold text-xl'>Pagos Seguros</span>
+                        <span className='text-sm'>A partir de $200</span>
+                    </div>
+                </div>
+                <div className='p-4 ml-4' style={{ display: 'flex', flexDirection: 'column', backgroundColor: "#F3F5F7", width: "500px", alignItems: "flex-start" }}>
+                    <div className='pt-4'>
+                        <FontAwesomeIcon icon={faPhone} size='2xl' />
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginTop: '10px' }}>
+                        <span className='font-bold text-xl'>24/7 Soporte</span>
+                        <span className='text-sm'>A partir de $200</span>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
 
 
 
