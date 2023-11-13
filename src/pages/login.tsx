@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import {  useNavigate } from 'react-router-dom'; // Importa useHistory para la redirección
-
 import { useRouter } from "next/navigation";
 import { useLoginMutation } from '../../graphql/generated/schema';
 import Register from './register';
 import Navbar from '@/components/navbar';
 import Link from 'next/link';
-
-
 
 
 function Login() {
@@ -42,7 +38,7 @@ function Login() {
 
       if (response.data && response.data.login.status === 'ok') {
         console.log('Inicio de sesión exitoso');
-        const userRole = response.data.login.role; 
+        const userRole = response.data.login.role;
         console.log(document.cookie);
 
         if (userRole === 'admin') {
@@ -59,11 +55,11 @@ function Login() {
   };
   return (
     <>
-    <Navbar />
-    
-    <div className="min-h-screen flex items-center justify-center bg-white">
+      <Navbar />
+
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="mr-8">
-         
+
           <Image src="/images/audifonos.png" width={800} height={400} alt="logo_dashboard" />
         </div>
 
