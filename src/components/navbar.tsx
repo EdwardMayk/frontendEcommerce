@@ -47,7 +47,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/perfil" className="hover:text-gray-200">
+            <Link href="/login" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faCircleUser} /></span>
             </Link>
           </li>
