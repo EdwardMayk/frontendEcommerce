@@ -11,11 +11,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-
-
   const [loginMutation, { data, error }] = useLoginMutation();
-
-
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -42,9 +38,9 @@ function Login() {
         console.log(document.cookie);
 
         if (userRole === 'admin') {
-          router.push('/dashboard');
+          router.push('/store');
         } else {
-          router.push('/products');
+          router.push('/dashboard');
         }
       } else {
         console.error('Inicio de sesión fallido');
@@ -53,31 +49,30 @@ function Login() {
       console.error('Error en la mutación de inicio de sesión:', error);
     }
   };
+
   return (
     <>
       <Navbar />
-
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="mr-8">
-
+      <div style={{ display: 'flex', height: '100vh' }}>
+        <div className="w-1/2 h-full p-8 flex items-center">
           <Image src="/images/audifonos.png" width={800} height={400} alt="logo_dashboard" />
         </div>
-
-        <div className="w-full sm:w-96 bg-white p-8 rounded shadow-md">
-          {/* Contenedor del formulario de inicio de sesión */}
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Inicia sesión</h2>
-          <form className="space-y-4">
+        <div className="w-1/2 h-full p-8 flex items-center" style={{ backgroundColor: 'white' }}>
+          <form className="w-full max-w-md space-y-4" onSubmit={handleLogin} style={{ marginBottom: '300px' }}>
+            <h2 className="text-2xl font-semibold mb-6 text-gray-800">Inicia sesión</h2>
             <div>
               <p className="text-gray-600 mt-4">
-                ¿Aún no tienes una cuenta? <Link href="/registro" className="text-blue-500">Regístrate</Link>
+                ¿Aún no tienes una cuenta? <Link href="/register" className="text-blue-500">Regístrate</Link>
               </p>
               <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-                email
+                Email
               </label>
               <input
                 type="text"
                 id="username"
                 name="username"
+                value={email}
+                onChange={handleEmailChange}
                 className="mt-1 p-2 w-full border rounded-md"
                 required
               />
@@ -90,6 +85,8 @@ function Login() {
                 type="password"
                 id="password"
                 name="password"
+                value={password}
+                onChange={handlePasswordChange}
                 className="mt-1 p-2 w-full border rounded-md"
                 required
               />
@@ -120,4 +117,5 @@ function Login() {
     </>
   );
 }
+
 export default Login;
