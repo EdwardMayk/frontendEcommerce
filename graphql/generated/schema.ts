@@ -44,7 +44,7 @@ export type CreateProductInput = {
 
 export type CreateUserInput = {
   /** UUID of user creator */
-  createdBy: Scalars['String']['input'];
+  createdBy?: InputMaybe<Scalars['String']['input']>;
   /** Email of user */
   email: Scalars['String']['input'];
   /** Name of user */
@@ -247,6 +247,16 @@ export type CreateProductMutationVariables = Exact<{
 
 export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', uuid: string, name: string, description?: string | null, price: number, image: string, brand: string } };
 
+export type CreateUserMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+  firstname: Scalars['String']['input'];
+  lastname: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', email: string, uuid: string, role: { __typename?: 'Role', uuid: string, value: string } } };
+
 export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -331,6 +341,49 @@ export function useCreateProductMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateProductMutationHookResult = ReturnType<typeof useCreateProductMutation>;
 export type CreateProductMutationResult = Apollo.MutationResult<CreateProductMutation>;
 export type CreateProductMutationOptions = Apollo.BaseMutationOptions<CreateProductMutation, CreateProductMutationVariables>;
+export const CreateUserDocument = gql`
+    mutation CreateUser($email: String!, $firstname: String!, $lastname: String!, $password: String!) {
+  createUser(
+    createUserInput: {email: $email, firstname: $firstname, lastname: $lastname, password: $password}
+  ) {
+    email
+    uuid
+    role {
+      uuid
+      value
+    }
+  }
+}
+    `;
+export type CreateUserMutationFn = Apollo.MutationFunction<CreateUserMutation, CreateUserMutationVariables>;
+
+/**
+ * __useCreateUserMutation__
+ *
+ * To run a mutation, you first call `useCreateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createUserMutation, { data, loading, error }] = useCreateUserMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      firstname: // value for 'firstname'
+ *      lastname: // value for 'lastname'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useCreateUserMutation(baseOptions?: Apollo.MutationHookOptions<CreateUserMutation, CreateUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, options);
+      }
+export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
+export type CreateUserMutationResult = Apollo.MutationResult<CreateUserMutation>;
+export type CreateUserMutationOptions = Apollo.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
 export const GetAllProductsDocument = gql`
     query getAllProducts {
   products {

@@ -14,7 +14,7 @@ const ProductsPage = () => {
         return <p>Error al cargar productos: {error.message}</p>;
     }
     return (
-        <div className="border" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "10px" }}>
+        <div className="" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "10px" }}>
             {data && data.products.map((product) => (
                 <ProductCard
                     key={product.uuid}

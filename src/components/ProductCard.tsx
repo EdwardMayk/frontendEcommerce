@@ -14,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ name, price, image }) 
 
     return (
         <div className="mt-4 mb-4" style={{ width: "250px" }}>
-            <div style={{ backgroundColor: "#F3F5F7", height: "300px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", position: "relative", marginRight: "20px" }}>
+            <div style={{ backgroundColor: "#F3F5F7", height: "300px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", position: "relative", }}>
 
                 <div className="flex justify-center items-center self-end m-4 bg-white rounded-full w-8 h-8">
                     <FontAwesomeIcon icon={faHeart} className="text-2xl m-1" />

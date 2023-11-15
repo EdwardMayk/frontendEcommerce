@@ -15,12 +15,12 @@ const Product = () => {
                     </div>
                 </div>
                 <div className="product-container" style={{ overflowX: "auto", whiteSpace: "nowrap", display: "flex", marginLeft: "200px", marginRight: "200px", }}>
+                    {/* <ProductCard />
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    <ProductCard /> */}
                 </div>
 
 
