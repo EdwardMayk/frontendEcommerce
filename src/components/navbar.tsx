@@ -1,4 +1,4 @@
-import { faBagShopping, faCircleUser, faMagnifyingGlass, faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCircleUser, faMagnifyingGlass, faTruckFast, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
@@ -16,22 +16,22 @@ function Navbar() {
       <div className='items-center'>
         <ul className="flex">
           <li className="mr-10">
-            <Link href="/" className="hover:text-gray-200" style={{ fontFamily: 'Space Grotesk, sans-serif' ,fontSize:"14px"}}>
+            <Link href="/" className="hover:text-gray-200" style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: "14px" }}>
               Inicio
             </Link>
           </li>
           <li className="mr-10">
-            <Link href="/shop" className="hover:text-gray-200" style={{fontSize:"14px"}}>
+            <Link href="/shop" className="hover:text-gray-200" style={{ fontSize: "14px" }}>
               Tienda
             </Link>
           </li>
           <li className="mr-10">
-            <Link href="/products" className="hover:text-gray-200" style={{fontSize:"14px"}}>
+            <Link href="/products" className="hover:text-gray-200" style={{ fontSize: "14px" }}>
               Productos
             </Link>
           </li>
           <li className="mr-10">
-            <Link href="/contacto" className="hover:text-gray-200" style={{fontSize:"14px"}}>
+            <Link href="/contacto" className="hover:text-gray-200" style={{ fontSize: "14px" }}>
               Contactanos
             </Link>
           </li>
@@ -49,6 +49,9 @@ function Navbar() {
           <li>
             <Link href="/login" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faCircleUser} /></span>
+            </Link>
+            <Link href="/register" className="hover:text-gray-200">
+              <FontAwesomeIcon icon={faUserPlus} />
             </Link>
           </li>
           <li>
