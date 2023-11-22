@@ -117,13 +117,6 @@ const Dashboard = () => {
             
 
 
-
-
-
-
-
-            <ProductInterface/>
-
         </>
     );
 };
