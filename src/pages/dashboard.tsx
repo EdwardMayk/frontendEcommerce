@@ -7,6 +7,8 @@ import { Button } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faLock, faMoneyBill, faPhone, faStar, faTruckFast } from '@fortawesome/free-solid-svg-icons';
 import Product from '@/components/Product';
+import ProductInterface from '@/components/ProductInterface';
+
 
 const Dashboard = () => {
     return (
@@ -110,9 +112,8 @@ const Dashboard = () => {
                 </div>
             </div>
 
-
-
-
+            <ProductInterface/>
+            
 
 
 

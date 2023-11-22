@@ -60,7 +60,7 @@ function Login() {
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="mr-8">
 
-          <Image src="/images/audifonos.png" width={800} height={400} alt="logo_dashboard" />
+          <Image src="/images/audifonos.png" width={800} height={400} alt="" />
         </div>
 
         <div className="w-full sm:w-96 bg-white p-8 rounded shadow-md">
