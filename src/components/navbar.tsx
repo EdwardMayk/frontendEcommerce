@@ -1,9 +1,10 @@
-import { faBagShopping, faCircleUser, faMagnifyingGlass, faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCircleUser, faMagnifyingGlass, faTruckFast, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 function Navbar() {
   return (
+    <> 
     <div className="flex flex-col md:flex-row justify-between items-center px-8 py-4">
       {/* Sección Izquierda */}
       <div className="flex items-center space-x-4 mb-4 md:mb-0">
@@ -13,24 +14,41 @@ function Navbar() {
       </div>
 
       {/* Sección Centro */}
+
       <div className='items-center mb-4 md:mb-0'>
         <ul className="flex flex-col md:flex-row">
           <li className="md:mr-10 mb-2 md:mb-0">
+
+      <div className='items-center'>
+        <ul className="flex">
+          <li className="mr-10">
+
             <Link href="/" className="hover:text-gray-200" style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: "14px" }}>
               Inicio
             </Link>
           </li>
+
           <li className="md:mr-10 mb-2 md:mb-0">
+
+          <li className="mr-10">
+
             <Link href="/shop" className="hover:text-gray-200" style={{ fontSize: "14px" }}>
               Tienda
             </Link>
           </li>
+
           <li className="md:mr-10 mb-2 md:mb-0">
+
+          <li className="mr-10">
+
             <Link href="/products" className="hover:text-gray-200" style={{ fontSize: "14px" }}>
               Productos
             </Link>
           </li>
           <li className="mb-2 md:mb-0">
+
+          <li className="mr-10">
+
             <Link href="/contacto" className="hover:text-gray-200" style={{ fontSize: "14px" }}>
               Contactanos
             </Link>
@@ -50,6 +68,9 @@ function Navbar() {
             <Link href="/login" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faCircleUser} /></span>
             </Link>
+            <Link href="/register" className="hover:text-gray-200">
+              <FontAwesomeIcon icon={faUserPlus} />
+            </Link>
           </li>
           <li>
             <Link href="/cart" className="hover:text-gray-200">
@@ -59,6 +80,7 @@ function Navbar() {
         </ul>
       </div>
     </div>
+    </>
   );
 }
 

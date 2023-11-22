@@ -73,6 +73,10 @@ const ProductInterface = () => {
                                     </span>
                                 </div>
 
+
+
+                                
+
                                 <div className="mb-4 md:mb-6">
                                     <span className="mb-3 inline-block text-sm font-semibold text-gray-500 md:text-base">
                                         Color
@@ -158,7 +162,6 @@ const ProductInterface = () => {
                             </div>
                         </div>
                     </div>
-
                     <div className="mx-auto max-w-screen-xl px-4 md:px-24 md:py-8">
                         <h3 className="text-2xl font-semibold text-gray-800 mb-4">
                             Descripción del Producto
@@ -178,4 +181,7 @@ const ProductInterface = () => {
 
 
 
+
 export default ProductInterface;
+
+

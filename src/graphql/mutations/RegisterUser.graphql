@@ -1,8 +1,15 @@
-# mutation Register($args: RegisterInput!) {
-#   register(args: $args) {
-#     id
-#     email
-#     name
-#     role
-#   }
-# }
+mutation CreateUser($email: String!, $firstname: String!, $lastname: String!, $password: String!) {
+  createUser(createUserInput: {
+    email: $email
+    firstname: $firstname
+    lastname: $lastname
+    password: $password
+  }) {
+    email
+    uuid
+    role {
+      uuid
+      value
+    }
+  }
+}

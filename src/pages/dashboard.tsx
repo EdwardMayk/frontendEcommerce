@@ -109,8 +109,9 @@ const Dashboard = () => {
                         <span className='font-bold text-xl'>24/7 Soporte</span>
                         <span className='text-sm'>A partir de $200</span>
                     </div>
-                </div>
+                </div>                
             </div>
+
 
             <ProductInterface/>
             
@@ -119,6 +120,9 @@ const Dashboard = () => {
 
 
 
+
+
+            <ProductInterface/>
 
         </>
     );
