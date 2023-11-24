@@ -11,45 +11,46 @@ interface ProductProps {
   code: string;
 }
 
-const favorite: React.FC = () => {
+const Favorite: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
-        <div className="text-center mb-8 text-extrabold">
-          <h1 className="text-2xl font-semibold">FAVORITOS</h1>
+      <div className="min-h-screen flex flex-col items-center bg-gray-100">
+        <div className="text-center mt-8 mb-4">
+          <h1 className="text-3xl font-semibold text-gray-800">Productos Favoritos</h1>
         </div>
 
-        {/* Agregar más elementos de productos aquí */}
         <ProductCard title="Iphone 12 Pro max 216gb" description="Oversized linen shirt" price="$1,000.00" code="13123" />
 
         <ProductCard title="Otro producto" description="Descripción del otro producto" price="$999.99" code="56789" />
-
-        {/* Fin de elementos de productos */}
       </div>
     </>
   );
 };
 
 const ProductCard: React.FC<ProductProps> = ({ title, description, price, code }) => (
-  <div className="rounded-xl w-400 flex p-4 mx-auto my-8" style={{ backgroundColor: "#faf9f8", width: "800px" }}>
-    <div className="">
-      <Image src="/images/phone1.png" width={300} height={300} />
-    </div>
-    <div className="w-full ml-2">
-      <h1 className="text-xl font-semibold mb-2" style={{ color: '#699b89' }}>{title}</h1>
-      <h2 className="text-base mb-2">{description}</h2>
-      <h2 className="text-base mb-2">Price: {price}</h2>
-      <h2 className="text-base mb-4">Code: {code}</h2>
-      <button className="px-4 py-2 text-white rounded-md flex items-center" style={{ backgroundColor: '#222222' }}>
-        <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-        Mover al carrito de compras
-      </button>
-      <div className="absolute top-0 right-0 m-2 text-gray-500 cursor-pointer">
-        <FontAwesomeIcon icon={faTrash} />
+  <div className="max-w-md mx-auto bg-white shadow-lg rounded-md overflow-hidden my-8">
+    <div className="flex flex-col md:flex-row">
+      <div className="w-full md:w-1/2">
+        <Image src="/images/phone1.png" width={300} height={300} alt={title} />
+      </div>
+      <div className="w-full md:w-1/2 p-4">
+        <h1 className="text-xl font-semibold mb-2 text-gray-800">{title}</h1>
+        <p className="text-sm text-gray-600 mb-2">{description}</p>
+        <p className="text-base text-gray-700 mb-2">Precio: {price}</p>
+        <p className="text-base text-gray-700 mb-4">Código: {code}</p>
+        <div className="flex justify-between items-center">
+          <button className="w-full md:w-auto px-4 py-2 text-white rounded-md flex items-center bg-gray-800 mb-2 md:mb-0">
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            Agregar al carrito
+          </button>
+          <div className="text-gray-500 cursor-pointer text-xl md:text-2xl">
+            <FontAwesomeIcon icon={faTrash} />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 );
 
-export default favorite;
+export default Favorite;
