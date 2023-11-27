@@ -36,6 +36,7 @@ const Dashboard = () => {
     return (
         <>
             <Navbar />
+            <div className='p-12'></div>
             <BannerCupon />
             <section>
                 <div className="bg-white max-w-screen-xl mx-auto text-gray-600 items-center justify-between overflow-hidden md:flex md:px-20 md:py-4">
