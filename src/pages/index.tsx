@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Link } from 'react-router-dom'
-import Login from './login'
+
+import Prueba from './prueba'
 import Dashboard from './dashboard'
-
-
-const inter = Inter({ subsets: ['latin'] })
+import Store from './store'
+import Login from './auth'
 
 export default function Home() {
   return (
-    <Dashboard />
+    <Login />
   )
 }

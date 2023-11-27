@@ -2,7 +2,6 @@ import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
-import { useGetAllProductsQuery } from "../../graphql/generated/schema";
 
 interface ProductCardProps {
     name: string;

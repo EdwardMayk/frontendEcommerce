@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import '@/styles/globals.css'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar/navbar";
 import type { AppProps } from "next/app";
 
 // @ts-nocheck
@@ -16,9 +16,7 @@ const queryClient = new ApolloClient({
 const MyApp: FC<AppProps> = ({ Component, pageProps }: any) => {
   return (
     <ApolloProvider client={queryClient}>
-        <Component {...pageProps} />
-
-
+      <Component {...pageProps} />
     </ApolloProvider>
   );
 }
