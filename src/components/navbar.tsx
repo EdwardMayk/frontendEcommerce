@@ -79,7 +79,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/cart" className="hover:text-gray-200">
+            <Link href="store/cart" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faBagShopping} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>

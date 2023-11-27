@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar/navbar';
+import Navbar from '@/components/navbar';
 import React from 'react';
 import FooterInterface from '@/components/complements/FooterInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

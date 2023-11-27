@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useLoginMutation } from '../../../graphql/generated/schema';
-import Register from '../register';
-import Navbar from '@/components/Navbar/navbar';
+
+import Navbar from '@/components/navbar';
 import Link from 'next/link';
 
 

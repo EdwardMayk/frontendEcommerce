@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 import '@/styles/globals.css'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import Navbar from "@/components/Navbar/navbar";
+import Navbar from "@/components/navbar";
 import type { AppProps } from "next/app";
+import { ProductProvider } from "@/context/ProductContext";
+import { ShoppingCartProvider } from "@/context/ShoppingCartContext";
 
 // @ts-nocheck
 /** @jsxImportSource @emotion/react */
@@ -16,8 +18,12 @@ const queryClient = new ApolloClient({
 const MyApp: FC<AppProps> = ({ Component, pageProps }: any) => {
   return (
     <ApolloProvider client={queryClient}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+      <ProductProvider>
+        <ShoppingCartProvider>
+          <Component {...pageProps} />
+        </ShoppingCartProvider>
+      </ProductProvider>
+    </ApolloProvider >
   );
 }
 export default MyApp;

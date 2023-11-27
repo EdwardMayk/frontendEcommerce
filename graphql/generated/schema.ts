@@ -120,10 +120,10 @@ export type Order = {
 
 export type Product = {
   __typename?: 'Product';
-  brand: Scalars['String']['output'];
+  brand?: Maybe<Scalars['String']['output']>;
   category: Category;
   createdAt: Scalars['DateTime']['output'];
-  description?: Maybe<Scalars['String']['output']>;
+  description: Scalars['String']['output'];
   id: Scalars['Int']['output'];
   image: Scalars['String']['output'];
   name: Scalars['String']['output'];
@@ -245,7 +245,7 @@ export type CreateProductMutationVariables = Exact<{
 }>;
 
 
-export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', uuid: string, name: string, description?: string | null, price: number, image: string, brand: string } };
+export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', uuid: string, name: string, description: string, price: number, image: string, brand?: string | null } };
 
 export type CreateUserMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -260,7 +260,7 @@ export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __type
 export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', uuid: string, name: string, description?: string | null, price: number, image: string, brand: string }> };
+export type GetAllProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', uuid: string, name: string, description: string, price: number, image: string, brand?: string | null }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 

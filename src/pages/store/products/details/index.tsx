@@ -1,32 +1,72 @@
-import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '@nextui-org/react';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
+import { useProductContext } from '@/context/ProductContext';
+import Navbar from '@/components/navbar';
+import Link from 'next/link';
+import { useShoppingCartContext } from '@/context/ShoppingCartContext';
 
 interface ProductInterfaceProps {
     name: string;
     price: number;
     image: string;
+    description: string;
 }
 
-const ProductInterface: React.FC<ProductInterfaceProps> = ({ name, price, image }) => {
-    console.log("productinterfacerendering")
+
+const ProductInterface: React.FC = () => {
+    const { selectedProduct } = useProductContext();
+    const { state, dispatch } = useShoppingCartContext();
+    const [quantity, setQuantity] = useState(1);
+
+
+    if (!selectedProduct) {
+        return null;
+    }
+
+    const { name, price, image, description, uuid } = selectedProduct;
+
+    const handleDecrease = () => {
+        // No permitir que la cantidad sea menor que 1
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const handleIncrease = () => {
+        // Puedes establecer una cantidad máxima si es necesario
+        setQuantity(quantity + 1);
+    };
+
+    const handleAddToCart = () => {
+        if (uuid) {
+            dispatch({ type: 'ADD_TO_CART', payload: { product: { name, price, image, description, uuid }, quantity } });
+            state.cart.map((item) => {
+                console.log('item', item);
+            }
+            )
+            console.log('product added to cart', { name, price, image, description, uuid, quantity });
+        }
+    };
+
+
+
     return (
         <>
+            <Navbar />
+
             <div className="bg-white py-6 sm:py-8 lg:py-12" style={{ marginLeft: "200px", marginRight: "200px" }}>
                 <div className="mx-auto max-w-screen-xl px-4 md:px-8">
                     <div className="grid gap-8 md:grid-cols-2">
                         <div className="grid gap-4 lg:grid-cols-5">
                             <div className="order-last flex gap-4 lg:order-none lg:flex-col">
                                 <div className="overflow-hidden rounded-lg bg-gray-100">
-                                    <Image src="/images/audifonos.png" width={500} height={300} alt="logo_dashboard2" />
+                                    <Image src={image} width={500} height={300} alt="logo_dashboard2" />
                                 </div>
                                 <div className="overflow-hidden rounded-lg bg-gray-100">
-                                    <Image src="/images/audifonos.png" width={500} height={300} alt="logo_dashboard2" />
+                                    <Image src={image} width={500} height={300} alt="logo_dashboard2" />
                                 </div>
                                 <div className="overflow-hidden rounded-lg bg-gray-100">
-                                    <Image src="/images/audifonos.png" width={500} height={300} alt="logo_dashboard2" />
+                                    <Image src={image} width={500} height={300} alt="logo_dashboard2" />
                                 </div>
                             </div>
                             <div className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4 w-auto">
@@ -79,7 +119,7 @@ const ProductInterface: React.FC<ProductInterfaceProps> = ({ name, price, image 
                                     56 ratings
                                 </span>
                             </div>
-
+                            {/* 
                             <div className="mb-4 md:mb-6">
                                 <span className="mb-3 inline-block text-sm font-semibold text-gray-500 md:text-base">
                                     Color
@@ -99,23 +139,31 @@ const ProductInterface: React.FC<ProductInterfaceProps> = ({ name, price, image 
                                         className="h-8 w-8 rounded-full border bg-white ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-200"
                                     />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="mb-4 md:mb-6">
                                 <div className="w-32 mb-2">
                                     <span className="inline-block text-sm font-semibold text-gray-500 md:text-base">
-                                        Quantity
+                                        QuantityDADASDS
                                     </span>
                                     <div className="relative flex flex-row w-full h-10 mt-6 bg-transparent rounded-lg">
-                                        <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-150 hover:bg-gray-400">
+                                        <button
+                                            onClick={handleDecrease}
+                                            className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-150 hover:bg-gray-400"
+                                        >
                                             <span className="m-auto text-2xl font-thin">
                                                 -
                                             </span>
                                         </button>
                                         <input
                                             type="number"
+                                            value={quantity}
+                                            onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 1)}
                                             className="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-150 focus:outline-none text-md hover:text-black"
                                         />
-                                        <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-150 hover:text-gray-700 hover:bg-gray-400">
+                                        <button
+                                            onClick={handleIncrease}
+                                            className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-150 hover:text-gray-700 hover:bg-gray-400"
+                                        >
                                             <span className="m-auto text-2xl font-thin">+</span>
                                         </button>
                                     </div>
@@ -146,15 +194,16 @@ const ProductInterface: React.FC<ProductInterfaceProps> = ({ name, price, image 
                                         d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
                                     />
                                 </svg>
-                                <span className="text-sm">2-4 day shipping</span>
                             </div>
                             <div className="flex gap-2.5">
-                                <a
-                                    href="#"
-                                    className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base"
-                                >
-                                    Añadir al carrito
-                                </a>
+                                <Link href={`/cart`}>
+                                    <button
+                                        onClick={handleAddToCart}
+                                        className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base"
+                                    >
+                                        Añadir al carrito
+                                    </button>
+                                </Link>
                                 <a
                                     href="#"
                                     className="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
@@ -168,14 +217,14 @@ const ProductInterface: React.FC<ProductInterfaceProps> = ({ name, price, image 
 
                 <div className="mx-auto max-w-screen-xl px-4 md:px-24 md:py-8">
                     <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                        Descripción del Producto
+                        Descripción
                     </h3>
                     <p className="text-gray-700">
-                        Descubre la última incorporación a nuestra colección. El pullover con patrón de Fancy Brand es la elección perfecta para mantenerte a la moda esta temporada. Con un diseño único y una calidad excepcional, este pullover se convertirá en tu nueva prenda favorita.
+                        {description}
                     </p>
-                    <p className="text-gray-700 mt-4">
+                    {/* <p className="text-gray-700 mt-4">
                         Disponible en varios colores para adaptarse a tu estilo, este pullover ofrece una combinación de comodidad y estilo. La alta calificación de 4.2 basada en 56 opiniones demuestra la satisfacción de nuestros clientes con este elegante pullover.
-                    </p>
+                    </p> */}
                 </div>
             </div >
         </>

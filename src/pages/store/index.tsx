@@ -1,8 +1,6 @@
 import Filter from '@/components/Filter'
-import Product from '@/components/Products/Product'
-import { ProductCard } from '@/components/Products/ProductCard'
-import ProductsPage from '@/components/Products/ProductListPage'
-import Navbar from '@/components/Navbar/navbar'
+import ProductsPage from '@/pages/store/products'
+import Navbar from '@/components/navbar'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
@@ -15,7 +13,6 @@ const Store: React.FC = () => {
             <Navbar />
             <div className="flex">
                 <Filter />
-
                 <div className="border p-4 my-4" style={{ display: "flex", flexDirection: "column", marginRight: "200px", }}>
                     <div>
                         <span >Productos</span>

@@ -1,28 +1,23 @@
-import Navbar from '@/components/Navbar/navbar';
+import Navbar from '@/components/navbar';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useShoppingCartContext } from '@/context/ShoppingCartContext';
 
 
 const Cart = () => {
-    const [cartItems, setCartItems] = useState([
-        { id: 1, name: 'Producto 1', price: 20.99 },
-        { id: 2, name: 'Producto 2', price: 15.49 },
-        { id: 3, name: 'Producto 3', price: 10.99 },
-    ]);
+    const { state: { cart }, dispatch } = useShoppingCartContext();
 
-    const removeFromCart = (itemId: number) => {
-        const updatedCart = cartItems.filter((item) => item.id !== itemId);
-        setCartItems(updatedCart);
-    };
 
     const calculateTotal = () => {
-        const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+        let total = 0;
+        cart.forEach((item) => {
+            total += item.product.price * item.quantity;
+        });
         return total.toFixed(2);
     };
 
-    const applyCoupon = () => {
-        console.log('Cupón aplicado');
-    };
+
+
 
     return (
         <>
@@ -139,40 +134,25 @@ const Cart = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cartItems.map((item) => (
-                                            <tr key={item.id}>
+                                        {cart.map((item) => (
+                                            <tr key={item.product.uuid}>
                                                 <td className="py-4">
                                                     <div className="flex items-center">
                                                         <div className="h-16 w-16 mr-4">
-                                                            <Image src="/images/audifonos.png" width={500} height={300} alt="" />
+                                                            <Image src={item.product.image} width={500} height={300} alt={item.product.name} />
                                                         </div>
-                                                        <span className="font-semibold">{item.name}</span>
+                                                        <span className="font-semibold">{item.product.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="py-4">${item.price.toFixed(2)}</td>
-                                                <td className="py-4">
-                                                    <div className="flex items-center">
-                                                        <button className="border rounded-md py-1 px-2 mr-1"> - </button>
-                                                        <span className="text-center w-6">1</span>
-                                                        <button className="border rounded-md py-1 px-2 ml-1"> + </button>
-                                                    </div>
-                                                </td>
-                                                <td className="py-4">${item.price.toFixed(2)}</td>
-                                                <td className="py-4">
-                                                    <button
-                                                        className="text-red-500 cursor-pointer"
-                                                        onClick={() => removeFromCart(item.id)}
-                                                    >
-                                                        Remove
-                                                    </button>
-                                                </td>
+                                                <td className="py-4">${item.product.price.toFixed(2)}</td>
+                                                <td className="py-4">{item.quantity}</td>
+                                                <td className="py-4">${(item.quantity * item.product.price).toFixed(2)}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
                         <div className="md:col-span-1 mt-4">
                             <div className="bg-white rounded-lg shadow-md p-4">
                                 <h2 className="text-lg font-semibold mb-4">Resumen</h2>
