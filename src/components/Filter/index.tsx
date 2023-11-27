@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Filter = () => {
     return (
         <div>
-            <div className="border p-4 my-4 space-y-2" style={{ marginLeft: "200px" }}>
+            <div className="border p-4 my-4 space-y-2" style={{ marginLeft: "200px", marginTop: "75px" }}>
                 <div>
                     <FontAwesomeIcon icon={faFilter} /> <span>Filtros</span>
                 </div>

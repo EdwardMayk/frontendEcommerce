@@ -11,9 +11,9 @@ const Store: React.FC = () => {
     return (
         <>
             <Navbar />
-            <div className="flex">
+            <div className="flex" >
                 <Filter />
-                <div className="border p-4 my-4" style={{ display: "flex", flexDirection: "column", marginRight: "200px", }}>
+                <div className="border p-4 my-4" style={{ display: "flex", flexDirection: "column", marginRight: "200px", marginTop: "75px" }}>
                     <div>
                         <span >Productos</span>
                         <span>Sort by</span>

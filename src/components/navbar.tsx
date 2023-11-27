@@ -27,7 +27,7 @@ function Navbar() {
   };
 
   const navbarStyles = `
-    flex flex-row justify-between items-center px-8 py-4 fixed min-w-full z-20
+    flex flex-row justify-between items-center px-8 py-4   fixed min-w-full z-20
     ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-600'}
   `;
 
@@ -45,17 +45,12 @@ function Navbar() {
             </Link>
           </li>
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
-            <Link href="/products" className="hover:text-gray-200">
-              Productos
-            </Link>
-          </li>
-          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
             <Link href="/favorite" className="hover:text-gray-200">
               Mis Favoritos
             </Link>
           </li>
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
-            <Link href="/contacto" className="hover:text-gray-200">
+            <Link href="/contact" className="hover:text-gray-200">
               Contáctanos
             </Link>
           </li>
@@ -75,11 +70,11 @@ function Navbar() {
         <ul className="flex space-x-4 ml-4 items-center"> {/* Agregada la clase items-center */}
           <li>
             <Link href="/notifications" className="hover:text-gray-200">
-              <span><FontAwesomeIcon icon={faBell} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }}/></span>
+              <span><FontAwesomeIcon icon={faBell} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>
           <li>
-            <Link href="store/cart" className="hover:text-gray-200">
+            <Link href="/cart" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faBagShopping} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>
@@ -109,7 +104,7 @@ function Navbar() {
 
         {/* Icons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Icons/>
+          <Icons />
         </div>
 
         {/* HambuergerMenu */}
@@ -127,7 +122,7 @@ function Navbar() {
         <div className='flex flex-col justify-center items-center min-h-[calc(80vh)]'>
           <LinkBar />
           <div className='pt-4'>
-          <Icons />
+            <Icons />
           </div>
         </div>
       </div>
