@@ -18,7 +18,7 @@ export default function Custom404() {
                     <p className="text-gray-600 mt-3">
                         ¡Pero tranquilo! Puedes volver a la tienda desde aquí.
                     </p>
-                    <Link href="/shop">
+                    <Link href="/">
                         <p className="bg-gray-400 text-white py-2 px-4 rounded-lg mt-4 inline-block">
                             Volver RAG Tienda
                         </p>

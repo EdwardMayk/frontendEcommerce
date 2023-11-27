@@ -54,6 +54,11 @@ function Navbar() {
               Contáctanos
             </Link>
           </li>
+          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/admin" className="hover:text-gray-200">
+              Dashboard
+            </Link>
+          </li>
         </ul>
       </div>
 
