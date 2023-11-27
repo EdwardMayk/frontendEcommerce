@@ -1,13 +1,13 @@
 import React from 'react';
 import { Image } from '@nextui-org/react';
-import {  useGetAllProductsQuery } from '../../graphql/generated/schema';
+import { useGetAllProductsQuery } from '../../../graphql/generated/schema';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProductsStore: React.FC = () => {
 
   const { loading, error, data } = useGetAllProductsQuery();
-  
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
@@ -23,7 +23,7 @@ const ProductsStore: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4 ml-3">
         {products.map((product, index) => (
           <div key={index} className="p-4 border rounded-lg bg-white items-center " >
-            <Image src={product.image} alt="image"  />
+            <Image src={product.image} alt="image" />
             <div className="bg-gray-300 h-1 mt-4"></div>
             <div className="mt-4">
               <div className="text-xm">{product.name}</div>

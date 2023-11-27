@@ -1,6 +1,6 @@
 // Importa tus componentes y la consulta GraphQL necesaria
-import { useGetAllProductsQuery } from '../../graphql/generated/schema';
-import { ProductCard } from '@/components/ProductCard';
+import { useGetAllProductsQuery } from '../../../graphql/generated/schema';
+import { ProductCard } from '@/components/Products/ProductCard';
 
 const ProductsPage = () => {
     // Llama a la consulta GraphQL

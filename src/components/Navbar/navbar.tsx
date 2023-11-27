@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { faBagShopping, faCircleUser, faMagnifyingGlass, faSun, faMoon, faBell  } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCircleUser, faMagnifyingGlass, faSun, faMoon, faBell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -35,9 +35,9 @@ function Navbar() {
       {/* Sección Centro */}
       <div className="items-center mb-4 md:mb-0">
         <ul className={`flex flex-col md:flex-row ${linkStyles}`}>
-          
+
           <li className="md:mr-10 mb-2 md:mb-0">
-            <Link href="/shop" className="hover:text-gray-200" style={{ fontSize: '14px' }}>
+            <Link href="/store" className="hover:text-gray-200" style={{ fontSize: '14px' }}>
               Tienda
             </Link>
           </li>
@@ -73,7 +73,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/cart" className="hover:text-gray-200">
+            <Link href="/dashboard/cart" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faBagShopping} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>
@@ -81,12 +81,12 @@ function Navbar() {
             <Link href="/login" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faCircleUser} className="w-7 h-7" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
-          </li>         
+          </li>
         </ul>
       </div>
     </div>
 
-    
+
   );
 }
 

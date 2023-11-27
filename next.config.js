@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['files-ecommerce.s3.amazonaws.com'],
   },
+  assetPrefix: "./"
 }
 
 module.exports = nextConfig
