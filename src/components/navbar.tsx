@@ -74,7 +74,7 @@ function Navbar() {
         />
         <ul className="flex space-x-4 ml-4 items-center"> {/* Agregada la clase items-center */}
           <li>
-            <Link href="/notifications" className="hover:text-gray-200">
+            <Link href="/notification" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faBell} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>
