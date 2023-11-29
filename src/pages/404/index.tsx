@@ -7,7 +7,7 @@ export default function Custom404() {
             <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-center h-screen md:px-8">
                 <div className="max-w-lg mx-auto text-center">
                     <div className="pb-6 flex justify-center items-center">
-                        <Image src="/images/RAGlogoFooter&Navbar.png" width={250} height={400} alt="" />
+                        <Image src="/images/RAGlogoFooter&NavBar.png" width={250} height={400} alt="" />
                     </div>
                     <h3 className="text-gray-800 text-4xl font-semibold sm:text-5xl">
                         Página no encontrada
