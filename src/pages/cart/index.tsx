@@ -26,9 +26,9 @@ const Cart = () => {
                 <div className="container mx-auto px-4">
                     <h1 className="text-2xl font-semibold mb-4">Carrito</h1>
 
-                    <div>    
+                    <div>
 
-                        <DetailsCart/>
+                        <DetailsCart />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -86,10 +86,10 @@ const Cart = () => {
 
                                             <div className="container mx-auto">
                                                 <div className="inputs w-full max-w-2xl p-6 mx-auto">
-                                                    
+
                                                     <form>
                                                         <div className="flex flex-wrap -mx-3 mb-6">
-                                                        <div className="w-full md:w-full px-3 mb-6">
+                                                            <div className="w-full md:w-full px-3 mb-6">
                                                                 <label
                                                                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                                     htmlFor="grid-text-1"
@@ -172,7 +172,7 @@ const Cart = () => {
                                                                 />
                                                             </div>
 
-                                                            
+
                                                         </div>
                                                     </form>
                                                 </div>
@@ -194,20 +194,6 @@ const Cart = () => {
                                     <span className="text-bold text-green-500">${calculateTotal()}</span>
                                 </div>
 
-                                <div className="w-full mt-4">
-                                    <div className="flex flex-wrap items-center gap-4">
-                                        <span className="text-gray-700 white:text-gray-400">Aplicar Cupón</span>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2 font-normal placeholder-gray-400 border white:border-gray-700 white:placeholder-gray-500 white:text-gray-400 white:bg-gray-800"
-                                            placeholder="Escribe tu cupón"
-                                        />
-                                        <button className="inline-block w-full px-4 py-2 font-bold text-center text-gray-100 bg-blue-500 rounded-md lg:w-32 hover:bg-blue-600">
-                                            Aplicar
-                                        </button>
-                                    </div>
-                                </div>
-
                                 <div className="flex justify-between mb-2">
                                     <span className="text-gray-500">Envío</span>
                                     <span className="text-gray-500">$0.00</span>
@@ -223,7 +209,7 @@ const Cart = () => {
                                 <div className="flex items-center space-x-4"></div>
 
                                 <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">
-                                    Checkout
+                                    Verificar
                                 </button>
                             </div>
                         </div>

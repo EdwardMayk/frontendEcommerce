@@ -59,6 +59,21 @@ function Navbar() {
               Dashboard
             </Link>
           </li>
+          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/recovery" className="hover:text-gray-200">
+
+            </Link>
+          </li>
+          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/change" className="hover:text-gray-200">
+
+            </Link>
+          </li>
+          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/facturacion" className="hover:text-gray-200">
+              AAA
+            </Link>
+          </li>
         </ul>
       </div>
 
@@ -73,11 +88,12 @@ function Navbar() {
           onClick={toggleDarkMode}
         />
         <ul className="flex space-x-4 ml-4 items-center"> {/* Agregada la clase items-center */}
-          <li>
-            <Link href="/notification" className="hover:text-gray-200">
-              <span><FontAwesomeIcon icon={faBell} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
-            </Link>
-          </li>
+          {/* <li>
+  <Link href="/notif" className="hover:text-gray-200">
+    <span><FontAwesomeIcon icon={faBell} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
+  </Link>
+</li> */}
+
           <li>
             <Link href="/cart" className="hover:text-gray-200">
               <span><FontAwesomeIcon icon={faBagShopping} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
@@ -88,6 +104,7 @@ function Navbar() {
               <span><FontAwesomeIcon icon={faCircleUser} className="w-7 h-7" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>
+          
         </ul>
       </>
     )

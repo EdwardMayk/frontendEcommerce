@@ -57,10 +57,10 @@ const Dashboard = () => {
                         </div>
 
                         <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
-                            <Link href="/contacto" className="block py-2 px-4 text-center text-white font-medium bg-indigo-500 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
-                                ¿Quienes somos?
+                            <Link href="/contact" className="block py-2 px-4 text-center text-white font-medium bg-indigo-500 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
+                                Contactanos
                             </Link>
-                            <Link href="/tienda" className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex">
+                            <Link href="/store" className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex">
                                 Vísita nuestra tienda!
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                                     <path fillRule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clipRule="evenodd" />
@@ -165,18 +165,18 @@ const Dashboard = () => {
                             <div className="max-w-md mx-auto text-center lg:text-left">
                                 <header>
                                     <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                                        Watches
+                                        Tecnologia
                                     </h2>
                                     <p className="mt-4 text-gray-500">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
-                                        rerum quam amet provident nulla error!
+                                        
+                                        Sumérgete en la revolución tecnológica en nuestra tienda.
                                     </p>
                                 </header>
                                 <Link
-                                    href="#"
+                                    href="/store"
                                     className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white transition bg-gray-900 border border-gray-900 rounded hover:shadow focus:outline-none focus:ring"
                                 >
-                                    Shop All
+                                    Tienda
                                 </Link>
                             </div>
                         </div>
@@ -251,12 +251,8 @@ const Dashboard = () => {
                     </Carousel>
                 </div>
             </div>
-
-            <SuscribeInterface />
-
             <FooterInterface />
-
-
+           
 
         </>
     );
