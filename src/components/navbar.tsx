@@ -74,6 +74,12 @@ function Navbar() {
               AAA
             </Link>
           </li>
+          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/order" className="hover:text-gray-200">
+              Estado de pedido
+            </Link>
+          </li>
+          
         </ul>
       </div>
 
