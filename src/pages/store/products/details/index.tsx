@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useProductContext } from '@/context/ProductContext';
 import Navbar from '@/components/navbar';
 import Link from 'next/link';
-import { useShoppingCartContext } from '@/context/ShoppingCartContext';
+import { useCartContext } from '@/context/CartContext';
 
 interface ProductInterfaceProps {
     name: string;
@@ -12,11 +12,11 @@ interface ProductInterfaceProps {
     description: string;
 }
 
-
 const ProductInterface: React.FC = () => {
     const { selectedProduct } = useProductContext();
-    const { state, dispatch } = useShoppingCartContext();
     const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCartContext(); // Usa el nuevo contexto
+
 
 
     if (!selectedProduct) {
@@ -36,15 +36,15 @@ const ProductInterface: React.FC = () => {
         // Puedes establecer una cantidad máxima si es necesario
         setQuantity(quantity + 1);
     };
-
     const handleAddToCart = () => {
         if (uuid) {
-            dispatch({ type: 'ADD_TO_CART', payload: { product: { name, price, image, description, uuid }, quantity } });
-            state.cart.map((item) => {
-                console.log('item', item);
-            }
-            )
-            console.log('product added to cart', { name, price, image, description, uuid, quantity });
+            const productToAdd = {
+                product: selectedProduct,
+                quantity: quantity,
+            };
+            console.log(productToAdd);
+
+            addToCart(productToAdd);
         }
     };
 
@@ -55,7 +55,7 @@ const ProductInterface: React.FC = () => {
             <Navbar />
 
             <div className="bg-white py-6 sm:py-8 lg:py-12" style={{ marginLeft: "200px", marginRight: "200px" }}>
-                <div className="mx-auto max-w-screen-xl px-4 md:px-8">
+                <div className="mx-auto max-w-screen-xl px-4 md:px-8" style={{ marginTop: "75px" }}>
                     <div className="grid gap-8 md:grid-cols-2">
                         <div className="grid gap-4 lg:grid-cols-5">
                             <div className="order-last flex gap-4 lg:order-none lg:flex-col">
@@ -196,9 +196,10 @@ const ProductInterface: React.FC = () => {
                                 </svg>
                             </div>
                             <div className="flex gap-2.5">
-                                <Link href={`/cart`}>
+                                <Link href="/cart">
                                     <button
                                         onClick={handleAddToCart}
+
                                         className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base"
                                     >
                                         Añadir al carrito

@@ -3,20 +3,61 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useShoppingCartContext } from '@/context/ShoppingCartContext';
 import DetailsCart from '@/components/complements/DetailsCart';
-
+import { useCartContext } from '@/context/CartContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 const Cart = () => {
-    const { state: { cart }, dispatch } = useShoppingCartContext();
+    const { cart, removeFromCart } = useCartContext();
     const [showDeliveryForm, setShowDeliveryForm] = useState(false);
 
+    const [paymentStatus, setPaymentStatus] = useState({ success: false, error: null, orderPreference: null });
+
+
+    // Función para calcular el total del carrito
     const calculateTotal = () => {
-        let total = 0;
-        cart.forEach((item) => {
-            total += item.product.price * item.quantity;
-        });
-        return total.toFixed(2);
+        // Implementa la lógica para calcular el total del carrito
+        // Puedes usar el array 'cart' del contexto para realizar cálculos
+        return cart.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2);
     };
+
+    const handleCheckout = async () => {
+        // Construye la lista de productos para enviar al backend
+        const productsToSend = cart.map(item => ({
+            title: item.product.name,
+            unit_price: item.product.price,
+            currency_id: 'PEN',
+            quantity: item.quantity,
+        }));
+
+        // Realiza la solicitud al backend
+        try {
+            const response = await fetch('http://localhost:3000/mercado/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items: productsToSend }),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData)
+                const initPoint = responseData.init_point;
+
+                // Redirige al usuario al nuevo enlace proporcionado por init_point
+                window.open(initPoint, '_blank');
+                console.log('Order created successfully');
+            } else {
+                // La solicitud falló, maneja el error según tus necesidades
+                console.error('Failed to create order');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
 
     return (
         <>
@@ -55,9 +96,18 @@ const Cart = () => {
                                                         <span className="font-semibold">{item.product.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="py-4">${item.product.price.toFixed(2)}</td>
-                                                <td className="py-4">{item.quantity}</td>
-                                                <td className="py-4">${(item.quantity * item.product.price).toFixed(2)}</td>
+                                                <td className="py-4 items-center">S/.{item.product.price.toFixed(2)}</td>
+                                                <td className="py-4 ">{item.quantity}</td>
+                                                <td className="py-4">S/.{(item.quantity * item.product.price).toFixed(2)}</td>
+                                                <td className="py-4">
+                                                    {/* Agrega el botón de eliminar */}
+                                                    <button
+                                                        onClick={() => removeFromCart(item.product.uuid)}
+                                                        className="text-red-500 hover:text-red-700"
+                                                    >
+                                                        <FontAwesomeIcon icon={faTimes} />
+                                                    </button>
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -77,8 +127,8 @@ const Cart = () => {
                                         />
                                         <span className="ml-2 text-sm text-gray-700">Delivery</span>
                                     </label>
-                                    <span className="font-semibold text-gray-500">s/8.00</span>
-                                </div>
+                                    <span className="font-semibold text-gray-500">S/.</span>
+                                </div >
 
                                 {showDeliveryForm && (
                                     <div className="">
@@ -186,36 +236,52 @@ const Cart = () => {
                                         <input type="radio" className="form-radio" name="shippingOption" />
                                         <span className="ml-2 text-sm text-gray-700">Recogo en tienda</span>
                                     </label>
-                                    <span className="font-semibold text-gray-500">s/0.00</span>
-                                </div>
+                                    <span className="font-semibold text-green-500">GRATIS</span>
+                                </div >
 
                                 <div className="flex justify-between mb-2">
                                     <span className="text-bold">Subtotal</span>
-                                    <span className="text-bold text-green-500">${calculateTotal()}</span>
-                                </div>
+                                    <span className="text-bold text-green-500">S/.{calculateTotal()}</span>
+                                </div >
 
                                 <div className="flex justify-between mb-2">
                                     <span className="text-gray-500">Envío</span>
-                                    <span className="text-gray-500">$0.00</span>
+                                    <span className="text-gray-500">S/.0.00</span>
                                 </div>
 
                                 <hr className="my-2" />
 
                                 <div className="flex justify-between mb-2">
                                     <span className="font-semibold">Total</span>
-                                    <span className="font-semibold">${calculateTotal()}</span>
+                                    <span className="font-semibold">S/.{calculateTotal()}</span>
                                 </div>
 
                                 <div className="flex items-center space-x-4"></div>
 
-                                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">
-                                    Verificar
+                                <button
+                                    onClick={handleCheckout}
+                                    className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full"
+                                >
+                                    Checkout
                                 </button>
+                                {paymentStatus.success ? (
+                                    <div>
+                                        <p>¡Gracias por su compra! Pago exitoso.</p>
+                                        {/* Puedes agregar más detalles o enlaces aquí si es necesario */}
+                                        {paymentStatus.orderPreference && (
+                                            <p>ID de preferencia: </p>
+                                        )}
+                                    </div>
+                                ) : (
+                                    // Muestra el mensaje de error si la creación de la orden o el pago no fue exitoso
+                                    paymentStatus.error && <p>Error: {paymentStatus.error}</p>
+                                    // Resto del contenido del componente
+                                )}
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </div >
+                    </div >
+                </div >
+            </div >
 
         </>
     );
