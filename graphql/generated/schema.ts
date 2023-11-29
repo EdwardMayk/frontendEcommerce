@@ -66,9 +66,11 @@ export type Mutation = {
   createProduct: Product;
   createUser: User;
   createUserAdmin: User;
+  generateResetPasswordCode: Scalars['String']['output'];
   login: SigninResponse;
   removeProduct: Product;
   removeUserActivity: UserActivity;
+  resetPassword: Scalars['Boolean']['output'];
   updateProduct: Product;
 };
 
@@ -88,6 +90,11 @@ export type MutationCreateUserAdminArgs = {
 };
 
 
+export type MutationGenerateResetPasswordCodeArgs = {
+  email: Scalars['String']['input'];
+};
+
+
 export type MutationLoginArgs = {
   args: LoginAuthDto;
 };
@@ -100,6 +107,13 @@ export type MutationRemoveProductArgs = {
 
 export type MutationRemoveUserActivityArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type MutationResetPasswordArgs = {
+  email: Scalars['String']['input'];
+  newPassword: Scalars['String']['input'];
+  resetCode: Scalars['String']['input'];
 };
 
 
@@ -214,6 +228,8 @@ export type User = {
   orders: Order;
   profilePicture?: Maybe<Scalars['String']['output']>;
   refreshToken: Scalars['String']['output'];
+  resetPasswordCode: Scalars['String']['output'];
+  resetPasswordExpires: Scalars['DateTime']['output'];
   role: Role;
   sessionUuid: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -231,6 +247,22 @@ export type UserActivity = {
   user: User;
   uuid: Scalars['String']['output'];
 };
+
+export type GenerateCodePasswordMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+}>;
+
+
+export type GenerateCodePasswordMutation = { __typename?: 'Mutation', generateResetPasswordCode: string };
+
+export type ResetPasswordMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+  resetCode: Scalars['String']['input'];
+  newPassword: Scalars['String']['input'];
+}>;
+
+
+export type ResetPasswordMutation = { __typename?: 'Mutation', resetPassword: boolean };
 
 export type LoginMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -268,6 +300,70 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', uuid: string, email: string, createdAt: any, firstname?: string | null, lastname?: string | null }> };
 
 
+export const GenerateCodePasswordDocument = gql`
+    mutation GenerateCodePassword($email: String!) {
+  generateResetPasswordCode(email: $email)
+}
+    `;
+export type GenerateCodePasswordMutationFn = Apollo.MutationFunction<GenerateCodePasswordMutation, GenerateCodePasswordMutationVariables>;
+
+/**
+ * __useGenerateCodePasswordMutation__
+ *
+ * To run a mutation, you first call `useGenerateCodePasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useGenerateCodePasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [generateCodePasswordMutation, { data, loading, error }] = useGenerateCodePasswordMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useGenerateCodePasswordMutation(baseOptions?: Apollo.MutationHookOptions<GenerateCodePasswordMutation, GenerateCodePasswordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<GenerateCodePasswordMutation, GenerateCodePasswordMutationVariables>(GenerateCodePasswordDocument, options);
+      }
+export type GenerateCodePasswordMutationHookResult = ReturnType<typeof useGenerateCodePasswordMutation>;
+export type GenerateCodePasswordMutationResult = Apollo.MutationResult<GenerateCodePasswordMutation>;
+export type GenerateCodePasswordMutationOptions = Apollo.BaseMutationOptions<GenerateCodePasswordMutation, GenerateCodePasswordMutationVariables>;
+export const ResetPasswordDocument = gql`
+    mutation ResetPassword($email: String!, $resetCode: String!, $newPassword: String!) {
+  resetPassword(email: $email, resetCode: $resetCode, newPassword: $newPassword)
+}
+    `;
+export type ResetPasswordMutationFn = Apollo.MutationFunction<ResetPasswordMutation, ResetPasswordMutationVariables>;
+
+/**
+ * __useResetPasswordMutation__
+ *
+ * To run a mutation, you first call `useResetPasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useResetPasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [resetPasswordMutation, { data, loading, error }] = useResetPasswordMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      resetCode: // value for 'resetCode'
+ *      newPassword: // value for 'newPassword'
+ *   },
+ * });
+ */
+export function useResetPasswordMutation(baseOptions?: Apollo.MutationHookOptions<ResetPasswordMutation, ResetPasswordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ResetPasswordMutation, ResetPasswordMutationVariables>(ResetPasswordDocument, options);
+      }
+export type ResetPasswordMutationHookResult = ReturnType<typeof useResetPasswordMutation>;
+export type ResetPasswordMutationResult = Apollo.MutationResult<ResetPasswordMutation>;
+export type ResetPasswordMutationOptions = Apollo.BaseMutationOptions<ResetPasswordMutation, ResetPasswordMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(args: {email: $email, password: $password}) {
