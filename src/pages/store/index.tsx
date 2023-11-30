@@ -12,7 +12,7 @@ const Store: React.FC = () => {
         <>
             <Navbar />
             <div className="flex" >
-                <Filter />
+                {/* <Filter /> */}
                 <div className="border p-4 my-4" style={{ display: "flex", flexDirection: "column", marginRight: "200px", marginTop: "75px" }}>
                     <div>
                         <span >Productos</span>

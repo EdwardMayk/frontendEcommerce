@@ -33,6 +33,7 @@ const stats = [
 ];
 
 const Dashboard = () => {
+
     return (
         <>
             <Navbar />
@@ -168,7 +169,7 @@ const Dashboard = () => {
                                         Tecnologia
                                     </h2>
                                     <p className="mt-4 text-gray-500">
-                                        
+
                                         Sumérgete en la revolución tecnológica en nuestra tienda.
                                     </p>
                                 </header>
@@ -252,7 +253,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <FooterInterface />
-           
+
 
         </>
     );

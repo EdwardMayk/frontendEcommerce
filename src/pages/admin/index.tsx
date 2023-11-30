@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faL, faPrint, faBars, faXmark, faCircleUser, faPenToSquare, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
+import { useGetUsersQuery } from '../../../graphql/generated/schema';
 
 export function AdminBar() {
   const [menu, setMenu] = useState(false)
@@ -33,7 +34,7 @@ export function AdminBar() {
             </Link>
           </div>
           <div className='flex items-center'>
-            <Link href="/login" className="hover:text-gray-200">
+            <Link href="/profile" className="hover:text-gray-200">
               <FontAwesomeIcon icon={faCircleUser} className="w-7 h-7" />
             </Link>
           </div>
@@ -62,8 +63,24 @@ export function AdminBar() {
   )
 }
 
-const adminHome = () => {
+const AdminHome = () => {
   // TABLE TEXT
+
+  const { data: usersData, loading: usersLoading, error: usersError } = useGetUsersQuery();
+  const formatDate = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+
+    const formattedDate: string = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  };
+
   const bodytext = "text-center py-2 px-4 border-b border-grey-light"
   const headtext = "py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light"
 
@@ -86,12 +103,36 @@ const adminHome = () => {
               <div className="mt-8 flex flex-wrap justify-between space-x-0 space-y-2 md:space-x-4 md:space-y-0">
                 {/* Sección 1 - Gráfica de Usuarios */}
                 <div className="flex-1 bg-white p-4 shadow rounded-lg lg:w-1/2">
-                  <h2 className="text-gray-500 text-lg font-semibold pb-1">Usuarios</h2>
+                  <h2 className="text-gray-500 text-lg font-semibold pb-1">Gráfica de Usuarios</h2>
                   <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6" /> {/* Línea con gradiente */}
                   <div className="chart-container" style={{ position: 'relative', height: '150px', width: '100%' }}>
                     {/* El canvas para la gráfica */}
                     <canvas id="usersChart" />
                   </div>
+
+                  <div className="flex-1 mt-4">
+                    <h2 className="text-gray-500 text-lg font-semibold pb-1">Usuarios</h2>
+                    {usersLoading && <p>Loading users...</p>}
+                    {usersError && <p>Error loading users: {usersError.message}</p>}
+                    {usersData && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {usersData.users.map((user) => (
+                          <div key={user.uuid} className="bg-white p-4 shadow rounded-lg">
+                            <h3 className="text-lg font-semibold">{user.firstname} {user.lastname}</h3>
+                            <p className="text-gray-500">Email: {user.email}</p>
+                            <p className="text-gray-500">Role: {user.role.name}</p>
+                            <p className="text-gray-500">Creado El: {formatDate(user.createdAt)}</p>
+
+                            {/* Add more user information as needed */}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+
+
+
                 </div>
                 {/* Sección 2 - Gráfica de Comercios */}
                 <div className="flex-1 bg-white p-4 shadow rounded-lg lg:w-1/2">
@@ -240,4 +281,4 @@ const adminHome = () => {
   );
 };
 
-export default adminHome;
+export default AdminHome;

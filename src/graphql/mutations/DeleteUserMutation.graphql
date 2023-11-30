@@ -1,0 +1,3 @@
+mutation DeleteUser($uuid: String!) {
+  removeUser(uuid: $uuid)
+}

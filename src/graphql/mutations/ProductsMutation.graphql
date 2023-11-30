@@ -9,10 +9,11 @@ input CreateProductInput {
 
 mutation CreateProduct($args: CreateProductInput!) {
   createProduct(args: $args) {
-    uuid
+	  uuid
     name
     description
     price
+    stock
     image
     brand
   }

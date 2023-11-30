@@ -1,14 +1,17 @@
 'use client'
 import { useState } from 'react';
-import { faBagShopping, faCircleUser, faMagnifyingGlass, faSun, faMoon, faBell, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCircleUser, faMagnifyingGlass, faSun, faMoon, faBell, faBars, faXmark, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useUser } from '@/context/UserContext';
 
 
 function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [menu, setMenu] = useState(true);
+  const { user } = useUser(); // Extrae el usuario del contexto
+
   const hamburgerMenu = () => {
     if (menu) {
       setMenu(false)
@@ -38,7 +41,11 @@ function Navbar() {
     return (
       <div className='text-center'>
         <ul className={`flex flex-col md:flex-row ${linkStyles} md:text-lg text-4xl md:font-light font-bold`}>
-
+          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/dashboard" className="hover:text-gray-200">
+              Inicio
+            </Link>
+          </li>
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
             <Link href="/store" className="hover:text-gray-200">
               Tienda
@@ -55,10 +62,11 @@ function Navbar() {
             </Link>
           </li>
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
-            <Link href="/admin" className="hover:text-gray-200">
+            <Link href="/admin" className={`hover:text-gray-200 ${user && user.role === 'admin' ? '' : 'hidden'}`}>
               Dashboard
             </Link>
           </li>
+
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
             <Link href="/recovery" className="hover:text-gray-200">
 
@@ -70,22 +78,26 @@ function Navbar() {
             </Link>
           </li>
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
-            <Link href="/facturacion" className="hover:text-gray-200">
-              AAA
-            </Link>
-          </li>
-          <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
             <Link href="/order" className="hover:text-gray-200">
               Estado de pedido
             </Link>
           </li>
-          
+          {/* <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
+            <Link href="/facturacion" className="hover:text-gray-200">
+              AAA
+            </Link>
+          </li> */}
+
+
         </ul>
       </div>
 
     )
   }
   const Icons = () => {
+    const { user } = useUser();
+    console.log('User Context:', user);
+
     return (
       <>
         <FontAwesomeIcon
@@ -105,12 +117,22 @@ function Navbar() {
               <span><FontAwesomeIcon icon={faBagShopping} className="w-6 h-6" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
             </Link>
           </li>
-          <li>
-            <Link href="/login" className="hover:text-gray-200">
-              <span><FontAwesomeIcon icon={faCircleUser} className="w-7 h-7" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
-            </Link>
-          </li>
-          
+          {
+            user ? (
+              <li>
+                <Link href="/profile" className="hover:text-gray-200">
+                  <span><FontAwesomeIcon icon={faCircleUser} className="w-7 h-7" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link href="/auth" className="hover:text-gray-200">
+                  <span><FontAwesomeIcon icon={faUserPlus} className="w-7 h-7" style={{ color: darkMode ? '#ffffff' : '#000000' }} /></span>
+                </Link>
+              </li>
+            )
+          }
+
         </ul>
       </>
     )

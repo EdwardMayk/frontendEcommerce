@@ -11,7 +11,7 @@ import { Navbar } from '@nextui-org/react'
 export default function Home() {
   return (
     <>
-      <Dashboard />
+      <Login />
 
     </>
   )

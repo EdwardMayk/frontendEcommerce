@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import type { AppProps } from "next/app";
 import { ProductProvider } from "@/context/ProductContext";
 import { CartProvider } from "@/context/CartContext";
+import { UserProvider } from "@/context/UserContext";
 
 // @ts-nocheck
 /** @jsxImportSource @emotion/react */
@@ -12,17 +13,20 @@ import { CartProvider } from "@/context/CartContext";
 
 const queryClient = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  credentials: 'include',
 });
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: any) => {
   return (
     <ApolloProvider client={queryClient}>
-      <ProductProvider>
-        <CartProvider>
-          <Component {...pageProps} />
-        </CartProvider>
-      </ProductProvider>
+      <UserProvider>
+        <ProductProvider>
+          <CartProvider>
+            <Component {...pageProps} />
+          </CartProvider>
+        </ProductProvider>
+      </UserProvider>
     </ApolloProvider >
   );
 }

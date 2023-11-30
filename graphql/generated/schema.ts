@@ -23,13 +23,16 @@ export type Category = {
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
-  products: Product;
+  products: Array<Product>;
   updatedAt: Scalars['DateTime']['output'];
+  uuid: Scalars['String']['output'];
 };
 
 export type CreateProductInput = {
   /** Brand of product */
   brand: Scalars['String']['input'];
+  /** Category of product */
+  category?: InputMaybe<Scalars['String']['input']>;
   /** Description of product */
   description: Scalars['String']['input'];
   /** Image of product */
@@ -68,10 +71,9 @@ export type Mutation = {
   createUserAdmin: User;
   generateResetPasswordCode: Scalars['String']['output'];
   login: SigninResponse;
-  removeProduct: Product;
+  removeUser: Scalars['Boolean']['output'];
   removeUserActivity: UserActivity;
   resetPassword: Scalars['Boolean']['output'];
-  updateProduct: Product;
 };
 
 
@@ -100,8 +102,8 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationRemoveProductArgs = {
-  id: Scalars['Int']['input'];
+export type MutationRemoveUserArgs = {
+  uuid: Scalars['String']['input'];
 };
 
 
@@ -114,11 +116,6 @@ export type MutationResetPasswordArgs = {
   email: Scalars['String']['input'];
   newPassword: Scalars['String']['input'];
   resetCode: Scalars['String']['input'];
-};
-
-
-export type MutationUpdateProductArgs = {
-  updateProductInput: UpdateProductInput;
 };
 
 export type Order = {
@@ -135,7 +132,7 @@ export type Order = {
 export type Product = {
   __typename?: 'Product';
   brand?: Maybe<Scalars['String']['output']>;
-  category: Category;
+  categories?: Maybe<Array<Category>>;
   createdAt: Scalars['DateTime']['output'];
   description: Scalars['String']['output'];
   id: Scalars['Int']['output'];
@@ -151,18 +148,12 @@ export type Product = {
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String']['output'];
-  product: Product;
   products: Array<Product>;
   role: Role;
   roles: Array<Role>;
   user: User;
   userActivity: UserActivity;
   users: Array<User>;
-};
-
-
-export type QueryProductArgs = {
-  id: Scalars['Int']['input'];
 };
 
 
@@ -193,6 +184,11 @@ export type Role = {
 
 export type SigninResponse = {
   __typename?: 'SigninResponse';
+  email: Scalars['String']['output'];
+  lastLogin: Scalars['String']['output'];
+  lastname: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  profilePicture: Scalars['String']['output'];
   role: Scalars['String']['output'];
   status: Scalars['String']['output'];
 };
@@ -200,22 +196,6 @@ export type SigninResponse = {
 export type Subscription = {
   __typename?: 'Subscription';
   messageAdded: Scalars['String']['output'];
-};
-
-export type UpdateProductInput = {
-  /** Brand of product */
-  brand?: InputMaybe<Scalars['String']['input']>;
-  /** Description of product */
-  description?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['Int']['input'];
-  /** Image of product */
-  image?: InputMaybe<Scalars['String']['input']>;
-  /** Name of product */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Price of product */
-  price?: InputMaybe<Scalars['Float']['input']>;
-  /** Stock of product */
-  stock?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type User = {
@@ -248,6 +228,13 @@ export type UserActivity = {
   uuid: Scalars['String']['output'];
 };
 
+export type DeleteUserMutationVariables = Exact<{
+  uuid: Scalars['String']['input'];
+}>;
+
+
+export type DeleteUserMutation = { __typename?: 'Mutation', removeUser: boolean };
+
 export type GenerateCodePasswordMutationVariables = Exact<{
   email: Scalars['String']['input'];
 }>;
@@ -270,14 +257,14 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SigninResponse', status: string, role: string } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SigninResponse', status: string, role: string, name: string, lastname: string, email: string } };
 
 export type CreateProductMutationVariables = Exact<{
   args: CreateProductInput;
 }>;
 
 
-export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', uuid: string, name: string, description: string, price: number, image: string, brand?: string | null } };
+export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', uuid: string, name: string, description: string, price: number, stock: number, image: string, brand?: string | null } };
 
 export type CreateUserMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -297,9 +284,40 @@ export type GetAllProductsQuery = { __typename?: 'Query', products: Array<{ __ty
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', uuid: string, email: string, createdAt: any, firstname?: string | null, lastname?: string | null }> };
+export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', uuid: string, email: string, createdAt: any, firstname?: string | null, lastname?: string | null, role: { __typename?: 'Role', uuid: string, name: string } }> };
 
 
+export const DeleteUserDocument = gql`
+    mutation DeleteUser($uuid: String!) {
+  removeUser(uuid: $uuid)
+}
+    `;
+export type DeleteUserMutationFn = Apollo.MutationFunction<DeleteUserMutation, DeleteUserMutationVariables>;
+
+/**
+ * __useDeleteUserMutation__
+ *
+ * To run a mutation, you first call `useDeleteUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteUserMutation, { data, loading, error }] = useDeleteUserMutation({
+ *   variables: {
+ *      uuid: // value for 'uuid'
+ *   },
+ * });
+ */
+export function useDeleteUserMutation(baseOptions?: Apollo.MutationHookOptions<DeleteUserMutation, DeleteUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteUserMutation, DeleteUserMutationVariables>(DeleteUserDocument, options);
+      }
+export type DeleteUserMutationHookResult = ReturnType<typeof useDeleteUserMutation>;
+export type DeleteUserMutationResult = Apollo.MutationResult<DeleteUserMutation>;
+export type DeleteUserMutationOptions = Apollo.BaseMutationOptions<DeleteUserMutation, DeleteUserMutationVariables>;
 export const GenerateCodePasswordDocument = gql`
     mutation GenerateCodePassword($email: String!) {
   generateResetPasswordCode(email: $email)
@@ -369,6 +387,9 @@ export const LoginDocument = gql`
   login(args: {email: $email, password: $password}) {
     status
     role
+    name
+    lastname
+    email
   }
 }
     `;
@@ -406,6 +427,7 @@ export const CreateProductDocument = gql`
     name
     description
     price
+    stock
     image
     brand
   }
@@ -527,6 +549,10 @@ export const GetUsersDocument = gql`
     createdAt
     firstname
     lastname
+    role {
+      uuid
+      name
+    }
   }
 }
     `;

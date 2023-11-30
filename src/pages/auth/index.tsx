@@ -5,10 +5,13 @@ import { useLoginMutation } from '../../../graphql/generated/schema';
 
 import Navbar from '@/components/navbar';
 import Link from 'next/link';
+import { useUser } from '@/context/UserContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useUser();
+
   const router = useRouter();
 
   const [loginMutation, { data, error, loading }] = useLoginMutation();
@@ -33,12 +36,19 @@ function Login() {
       });
 
       if (response.data && response.data.login.status === 'ok') {
+        const user = {
+          email: response.data.login.email,
+          name: response.data.login.name,
+          role: response.data.login.role,
+        };
+        login(user);
+
         const userRole = response.data.login.role;
 
         if (userRole === 'admin') {
-          router.push('/dashboard');
+          router.push('/admin');
         } else {
-          router.push('/products');
+          router.push('/dashboard');
         }
       } else {
         console.error('Inicio de sesión fallido');
@@ -60,7 +70,7 @@ function Login() {
           <form className="space-y-4" onSubmit={handleLogin}>
             <div>
               <p className="text-gray-600 mt-4 text-center sm:text-left">
-                ¿Aún no tienes una cuenta? <Link href="/registro" className="text-blue-500">Regístrate</Link>
+                ¿Aún no tienes una cuenta? <Link href="/register" className="text-blue-500">Regístrate</Link>
               </p>
               <label htmlFor="username" className="block text-sm font-medium text-gray-600">
                 Email
