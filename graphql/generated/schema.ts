@@ -69,6 +69,7 @@ export type Mutation = {
   createProduct: Product;
   createUser: User;
   createUserAdmin: User;
+  deleteProduct: Scalars['Boolean']['output'];
   generateResetPasswordCode: Scalars['String']['output'];
   login: SigninResponse;
   removeUser: Scalars['Boolean']['output'];
@@ -89,6 +90,11 @@ export type MutationCreateUserArgs = {
 
 export type MutationCreateUserAdminArgs = {
   createUserInput: CreateUserInput;
+};
+
+
+export type MutationDeleteProductArgs = {
+  uuid: Scalars['String']['input'];
 };
 
 
@@ -228,6 +234,13 @@ export type UserActivity = {
   uuid: Scalars['String']['output'];
 };
 
+export type DeleteProductMutationVariables = Exact<{
+  uuid: Scalars['String']['input'];
+}>;
+
+
+export type DeleteProductMutation = { __typename?: 'Mutation', deleteProduct: boolean };
+
 export type DeleteUserMutationVariables = Exact<{
   uuid: Scalars['String']['input'];
 }>;
@@ -260,7 +273,12 @@ export type LoginMutationVariables = Exact<{
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SigninResponse', status: string, role: string, name: string, lastname: string, email: string } };
 
 export type CreateProductMutationVariables = Exact<{
-  args: CreateProductInput;
+  name: Scalars['String']['input'];
+  description: Scalars['String']['input'];
+  price: Scalars['Float']['input'];
+  stock: Scalars['Float']['input'];
+  image: Scalars['String']['input'];
+  brand: Scalars['String']['input'];
 }>;
 
 
@@ -287,6 +305,37 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', uuid: string, email: string, createdAt: any, firstname?: string | null, lastname?: string | null, role: { __typename?: 'Role', uuid: string, name: string } }> };
 
 
+export const DeleteProductDocument = gql`
+    mutation deleteProduct($uuid: String!) {
+  deleteProduct(uuid: $uuid)
+}
+    `;
+export type DeleteProductMutationFn = Apollo.MutationFunction<DeleteProductMutation, DeleteProductMutationVariables>;
+
+/**
+ * __useDeleteProductMutation__
+ *
+ * To run a mutation, you first call `useDeleteProductMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteProductMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteProductMutation, { data, loading, error }] = useDeleteProductMutation({
+ *   variables: {
+ *      uuid: // value for 'uuid'
+ *   },
+ * });
+ */
+export function useDeleteProductMutation(baseOptions?: Apollo.MutationHookOptions<DeleteProductMutation, DeleteProductMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteProductMutation, DeleteProductMutationVariables>(DeleteProductDocument, options);
+      }
+export type DeleteProductMutationHookResult = ReturnType<typeof useDeleteProductMutation>;
+export type DeleteProductMutationResult = Apollo.MutationResult<DeleteProductMutation>;
+export type DeleteProductMutationOptions = Apollo.BaseMutationOptions<DeleteProductMutation, DeleteProductMutationVariables>;
 export const DeleteUserDocument = gql`
     mutation DeleteUser($uuid: String!) {
   removeUser(uuid: $uuid)
@@ -421,8 +470,10 @@ export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export const CreateProductDocument = gql`
-    mutation CreateProduct($args: CreateProductInput!) {
-  createProduct(args: $args) {
+    mutation CreateProduct($name: String!, $description: String!, $price: Float!, $stock: Float!, $image: String!, $brand: String!) {
+  createProduct(
+    args: {name: $name, description: $description, price: $price, stock: $stock, image: $image, brand: $brand}
+  ) {
     uuid
     name
     description
@@ -448,7 +499,12 @@ export type CreateProductMutationFn = Apollo.MutationFunction<CreateProductMutat
  * @example
  * const [createProductMutation, { data, loading, error }] = useCreateProductMutation({
  *   variables: {
- *      args: // value for 'args'
+ *      name: // value for 'name'
+ *      description: // value for 'description'
+ *      price: // value for 'price'
+ *      stock: // value for 'stock'
+ *      image: // value for 'image'
+ *      brand: // value for 'brand'
  *   },
  * });
  */

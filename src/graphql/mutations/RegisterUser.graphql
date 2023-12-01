@@ -11,6 +11,5 @@ mutation CreateUser($email: String!, $firstname: String!, $lastname: String!, $p
       uuid
       value
     }
-    status
   }
 }
