@@ -8,6 +8,10 @@ import FooterInterface from '@/components/complements/FooterInterface';
 import SuscribeInterface from '@/components/complements/SuscribeInterface';
 import BannerCupon from '@/components/complements/BannerCupon';
 import LogOut from '@/components/Login/LogOut';
+import { HeaderImg } from '@/components/navbarComp';
+import { ProductComponent, Product2Component, SliderProducts } from '@/components/product';
+import NeonText from '@/components/neon/neonComp';
+
 
 const stats = [
     {
@@ -31,230 +35,200 @@ const stats = [
         title: "Por Descubrir"
     },
 ];
+const Marcas = () => {
+    return (
+        <div className="mt-16 flex justify-center">
+            <ul className="inline-grid grid-cols-2 gap-x-10 gap-y-12 md:gap-x-16 md:grid-cols-3 lg:grid-cols-4">
 
+                {/* LOGO 1 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/LogitechW.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 2 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/AsusW.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 3 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/CorsairW.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 4 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/MSIW.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 5 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/logoRazer.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 6 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/logoRedragon.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 7 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/logoRog.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+                {/* LOGO 8 */}
+                <li>
+                    <Image width="200" height="28"
+                        src="/images/VSG.png"
+                        className=""
+                        alt=""
+                    />
+                </li>
+
+            </ul>
+        </div>
+    )
+}
 const Dashboard = () => {
+    const NeonColors = {
+        pink: '#ea00d9',
+        sky: '#0abdc6'
+    }
 
     return (
         <>
             <Navbar />
-            <div className='p-12'></div>
-            <BannerCupon />
-            <section>
-                <div className="bg-white max-w-screen-xl mx-auto text-gray-600 items-center justify-between overflow-hidden md:flex md:px-20 md:py-4">
-                    <div className="flex-none md:mt-10 space-y-5 md:order-2 md:ml-auto">
-                        <Image src="/images/RAGlogoDashboard.png" alt="" width={475} height={0} />
-                    </div>
-                    <div className="flex-none space-y-5 md:order-1 px-4 sm:max-w-lg md:px-6 lg:max-w-xl">
-                        <h1 className="text-xl text-indigo-600 font-medium">
-                            Bienvenido a R.A.G.
-                        </h1>
-                        <h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
-                            RED APARATUS GAMING
-                        </h2>
-                        <div className="mx-auto text-center">
-                            <p className="text-justify">
-                                Explora un universo de innovación y estilo en nuestra tienda de tecnología gamer. Aquí, no solo encontrarás tus equipos, computadoras y accesorios favoritos, sino que también descubrirás la esencia misma de la experiencia gamer. Nuestros productos están cuidadosamente seleccionados para ofrecerte el máximo rendimiento al mejor precio, y trabajamos con las marcas más reconocidas del mundo gamer.
-                            </p>
-                        </div>
+            {/* <BannerCupon /> */}
+            {/* Header Image */}
+            <HeaderImg imagen='/img/bg.jpg' />
 
-                        <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
-                            <Link href="/contact" className="block py-2 px-4 text-center text-white font-medium bg-indigo-500 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
-                                Contactanos
-                            </Link>
-                            <Link href="/store" className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex">
-                                Vísita nuestra tienda!
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                    <path fillRule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clipRule="evenodd" />
-                                </svg>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+            <div className="text-black dark:text-white">
+                <div className="flex flex-col justify-center dark:text-white">
 
-                <div>
-                    <div className="bg-white py-16 max-w-screen-xl mx-auto px-4 md:px-8">
-                        <div className="max-w-xl mx-auto text-center">
-                            <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                                ¡Brindamos las mejores marcas!
-                            </h3>
-                        </div>
-                        <div className="mt-16 flex justify-center">
-                            <ul className="inline-grid grid-cols-2 gap-x-10 gap-y-12 md:gap-x-16 md:grid-cols-3 lg:grid-cols-4">
+                    {/* Titulo y logo */}
+                    <div className="flex justify-center flex-wrap min-w-full z-10 font-bold mt-40 mb-10 pb-10 md:pb-60">
+                        <div className="flex flex-col sm:mr-24 mr-2 pl-4 md:pl-0">
+                            <p className="mb-4 text-white text-xl">Hola, Bienvenido a RAG!</p>
+                            <div className="text-6xl">
+                                <div className="text-white">
+                                    <NeonText texto='Red Aparatus' neonColor={NeonColors.sky} neonSecondary={NeonColors.sky} size='6xl' />
+                                    <NeonText texto='Gaming' neonColor={NeonColors.pink} neonSecondary={NeonColors.pink} size='6xl' />
+                                </div>
 
-                                {/* LOGO 1 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoLogitech.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 2 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoAsus.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 3 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoCorsair.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 4 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoMsi.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 5 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoRazer.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 6 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoRedragon.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 7 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoRog.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                                {/* LOGO 8 */}
-                                <li>
-                                    <Image width="200" height="28"
-                                        src="/images/logoGigabyte.png"
-                                        className=""
-                                        alt=""
-                                    />
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div className="bg-white max-w-screen-xl px-4 py-8 mx-auto sm:py-10 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-                        <div className="grid p-6 bg-gray-100 rounded place-content-center sm:p-8">
-                            <div className="max-w-md mx-auto text-center lg:text-left">
-                                <header>
-                                    <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                                        Tecnologia
-                                    </h2>
-                                    <p className="mt-4 text-gray-500">
-
-                                        Sumérgete en la revolución tecnológica en nuestra tienda.
-                                    </p>
-                                </header>
-                                <Link
-                                    href="/store"
-                                    className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white transition bg-gray-900 border border-gray-900 rounded hover:shadow focus:outline-none focus:ring"
-                                >
-                                    Tienda
-                                </Link>
+                                {/* botones */}
+                                <div className="flex mt-6 text-sm font-sans pt-4">
+                                    <button className="rounded-lg bg-indigo-600 shadow-lg mr-4 px-4 py-2 text-white transition ease-in-out duration-300 hover:bg-pink-400">
+                                        <Link href={"/contact"}>Contáctanos</Link>
+                                    </button>
+                                    <button className="flex rounded-lg bg-white text-black px-4 py-2 transition ease-in-out duration-300 hover:bg-gray-200">
+                                        <Link href={"/store"} className='pr-2'>
+                                            <p className='font-medium'>Nuestra Tienda!</p>
+                                        </Link>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                            <path fillRule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clipRule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div className="lg:col-span-2 lg:py-8">
-                            <ul className="grid grid-cols-2 gap-4">
-                                <li>
-                                    <Link href="#" className="block group">
-                                        <Image src="/images/phone1.png" width={800} height={400} alt="" />
-                                        <div className="mt-3">
-                                            <h3 className="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4">
-                                                Simple Watch
-                                            </h3>
-                                            <p className="mt-1 text-sm text-gray-700">$150</p>
-                                        </div>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className="block group">
-                                        <Image src="/images/phone1.png" width={800} height={400} alt="" />
-                                        <div className="mt-3">
-                                            <h3 className="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4">
-                                                Simple Watch
-                                            </h3>
-                                            <p className="mt-1 text-sm text-gray-700">$150</p>
-                                        </div>
-                                    </Link>
-                                </li>
-                            </ul>
+                        {/* Logo */}
+                        <div className="sm:ml-24 ml-2 mt-4 sm:mt-0">
+                            <Image
+                                alt="Logo-rag"
+                                src={'/img/logo-no-bg-w.png'}
+                                quality={100}
+                                width={200}
+                                height={200}
+                            />
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <section>
-                <div className="bg-white max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8 py-16 ">
-                    <div className="max-w-2xl mx-auto text-center">
-                        <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                            Nos preocupa la satisfacción de nuestros clientes
-                        </h3>
-                        <p className="mt-3">
-                            Tenemos el orgullo de presentar al público nuestro gran alcance y nuestra amplia variedad de productos.
-                        </p>
-                    </div>
-                    <div className="mt-12">
-                        <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x">
-                            {
-                                stats.map((item, idx) => (
-                                    <li key={idx} className="text-center px-12 md:px-16">
-                                        <h4 className="text-4xl text-indigo-600 font-semibold">{item.data}</h4>
-                                        <p className="mt-3 font-medium">{item.title}</p>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </section>
+                    {/* CONTENEDOR GRIS */}
+                    <div className="flex justify-center bg-neutral-950 z-20 mt-4 pt-4 min-w-full">
+                        <div className="font-bold z-20">
+                            <p className="text-center text-xl">¡Brindamos las mejores marcas!</p>
 
-            <div className="flex justify-center">
-                <div className="bg-white max-w-screen-xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8">
-                    <Carousel showArrows={true} showThumbs={false} infiniteLoop={true}>
-                        <div>
-                            <div className="border border-gray-200 overflow-hidden">
-                                <Image src="/images/logitech.png" width={800} height={400} alt="logo_dashboard" />
+                            {/* Linea */}
+                            <div className="flex justify-center mb-6">
+                                <div className="bg-orange-200 dark:bg-white w-20 h-1 mt-1 rounded-sm"></div>
                             </div>
+                            {/* CONTENIDO */}
+                            <section className="flex justify-center flex-wrap mb-4">
+                                <Marcas />
+                            </section>
+                            <section className='flex flex-col justify-center flex-wrap'>
+                                <button className='text-4xl'>Tienda</button>
+                                {/* Linea */}
+                                <div className="flex justify-center mb-6">
+                                    <div className="bg-orange-200 dark:bg-white w-20 h-1 mt-1 rounded-sm"></div>
+                                </div>
+                                <div className='flex justify-center flex-wrap'>
+                                    <ProductComponent />
+                                    <ProductComponent />
+                                    <ProductComponent />
+                                </div>
+                            </section>
+                            <section>
+                                <div className="max-w-screen-xl mx-auto px-4 text-white md:px-8 py-16 ">
+                                    <div className="max-w-2xl mx-auto text-center">
+                                        <h3 className="text-white text-3xl font-semibold sm:text-4xl">
+                                            Nos preocupa la satisfacción de nuestros clientes
+                                        </h3>
+                                        <p className="mt-3 text-white">
+                                            Tenemos el orgullo de presentar al público nuestro gran alcance y nuestra amplia variedad de productos.
+                                        </p>
+                                    </div>
+                                    <div className="mt-12">
+                                        <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x">
+                                            {
+                                                stats.map((item, idx) => (
+                                                    <li key={idx} className="text-center px-12 md:px-16">
+                                                        <NeonText texto={item.data} neonColor={NeonColors.sky} neonSecondary={NeonColors.sky} size='2xl' />
+                                                        <p className="mt-3 font-medium">{item.title}</p>
+                                                    </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <SliderProducts />
+                            </section>
+                            <section>
+                                <FooterInterface />
+                            </section>
                         </div>
-                        <div>
-                            <div className="border border-gray-200 overflow-hidden">
-                                <Image src="/images/logitech2.jpeg" width={800} height={400} alt="logo_dashboard2" />
-                            </div>
-                        </div>
-                    </Carousel>
+                    </div>
                 </div>
             </div>
-            <FooterInterface />
-
-
         </>
     );
 };
