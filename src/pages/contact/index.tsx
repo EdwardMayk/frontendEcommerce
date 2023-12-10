@@ -5,12 +5,101 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { Image, Link } from '@nextui-org/react';
+import { HeaderImg } from '@/components/navbarComp';
+import { ProductComponent, Product2Component, SliderProducts } from '@/components/product';
+import NeonText from '@/components/neon/neonComp';
+import TypingEffect from '@/components/neon/typingEffect';
+
 
 function Contacto() {
+  const NeonColors = {
+    pink: '#ea00d9',
+    sky: '#0abdc6'
+  }
+  const texto = 'Somos tu destino gaming definitivo. En RAG, ofrecemos piezas de alta calidad, periféricos y más para llevar tu experiencia de juego al siguiente nivel. Descubre productos de última generación y un equipo apasionado listo para asesorarte. Únete a nuestra comunidad gaming y vive la excelencia en cada clic. ¡Juega en serio con RAG!'
   return (
     <>
       <Navbar />
-      <section className="bg-white" id="contact">
+      <HeaderImg imagen='/img/bg9.jpg' />
+      <div className="text-white">
+        <div className="flex flex-col justify-center text-white">
+
+          {/* Titulo y logo */}
+          <div className="flex flex-row justify-center flex-wrap min-w-full z-10 font-bold mt-40 mb-10 pb-10 md:pb-60">
+            {/* TÍTULO */}
+            <div className="flex flex-col mr-2 pr-4 md:pr-0">
+              <p className="mb-4 text-white text-xl text-right">Hola, Bienvenido a RAG!</p>
+              <div className="text-6xl">
+                <div className="text-white text-right">
+                  <NeonText texto='Red Aparatus' neonColor={NeonColors.sky} neonSecondary={NeonColors.sky} size='6xl' />
+                  <NeonText texto='Gaming' neonColor={NeonColors.pink} neonSecondary={NeonColors.pink} size='6xl' />
+                </div>
+
+                {/* botones */}
+                <div className="flex justify-end mt-6 text-sm font-sans pt-4">
+                  <button className="flex rounded-lg bg-pink-400 text-white px-4 py-2 transition ease-in-out duration-300 hover:bg-cyan-400 hover:text-gray-800 hover:shadow-lg hover:shadow-cyan-500/50">
+                    <Link href={"/store"} className='pr-2'>
+                      <p className='font-medium'>Nuestra Tienda!</p>
+                    </Link>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                      <path fillRule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* TEXTO */}
+            <div className='flex justify-center items-center m-4 lg:w-1/4 lg:ml-10 pt-2 lg:pt-0'>
+              <p className='text-justify lg:text-left'>{texto}</p>
+            </div>
+          </div>
+
+          {/* CONTENEDOR GRIS */}
+          <div className="flex justify-center bg-neutral-950 z-20 mt-4 pt-4 min-w-full">
+            <div className="font-bold z-20">
+              <p className="text-center text-4xl">¡Ubícanos!</p>
+              {/* Linea */}
+              <div className="flex justify-center mb-6">
+                <div className="bg-white w-20 h-1 mt-1 rounded-sm"></div>
+              </div>
+              {/* CONTENIDO */}
+              <section className='flex flex-col justify-center flex-wrap'>
+                <button className='text-4xl'>Tienda</button>
+                {/* Linea */}
+                <div className="flex justify-center mb-6">
+                  <div className="bg-orange-200 dark:bg-white w-20 h-1 mt-1 rounded-sm"></div>
+                </div>
+                <div className='flex justify-center flex-wrap'>
+                  <ProductComponent />
+                  <ProductComponent />
+                  <ProductComponent />
+                </div>
+              </section>
+              <section>
+                <div className="max-w-screen-xl mx-auto px-4 text-white md:px-8 py-16 ">
+                  <div className="max-w-2xl mx-auto text-center">
+                    <h3 className="text-white text-3xl font-semibold sm:text-4xl">
+                      Nos preocupa la satisfacción de nuestros clientes
+                    </h3>
+                    <p className="mt-3 text-white">
+                      Tenemos el orgullo de presentar al público nuestro gran alcance y nuestra amplia variedad de productos.
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <section>
+                <SliderProducts />
+              </section>
+              <section>
+                <FooterInterface />
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <section className="bg-white" id="contact">
         <section className="bg-white">
           <div className="container px-6 py-12 mx-auto">
             <div className="text-center">
@@ -84,9 +173,7 @@ function Contacto() {
           </div>
 
         </div>
-      </section>
-
-      <FooterInterface />
+      </section> */}
     </>
   );
 }

@@ -6,11 +6,11 @@ export function ProductComponent() {
     let title = "20% off en Teclados"
     let description = "Lorem ipsum dolor sit amet consec tetur adipisicing elit."
     return (
-        <div className="w-60 h-80 rounded-lg m-2">
-            <div className="z-10 absolute">
-                <img src="/img/teclado.jpg" className="w-60 h-80 object-cover rounded-lg" />
+        <div className="w-60 h-80 rounded-lg m-2 overflow-hidden hover:shadow-lg hover:shadow-cyan-500/50 transition ease-in-out duration-300">
+            <div className="z-10 absolute overflow-hidden rounded-lg">
+                <img src="/img/teclado.jpg" className="w-60 h-80 object-cover" />
             </div>
-            <div className="flex items-end bg-black h-80 w-60 z-20 absolute opacity-50 text-white rounded-lg">
+            <div className="flex items-end bg-black h-80 w-60 z-20 absolute opacity-50 text-white rounded-lg hover:backdrop-blur-lg transition ease-in-out duration-300">
                 <div className="flex flex-col p-4">
                     <div className="text-xl font-bold">
                         <p>{title}</p>
@@ -108,7 +108,7 @@ export function SliderProducts() {
         <div className='max-w-[400px] max-h-[600px] h-screen min-w-full m-auto py-16 px-4 relative group z-20'>
             <div
                 style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-                className='w-full h-full rounded-2xl bg-center bg-cover duration-500'
+                className='w-full h-full rounded-2xl bg-center bg-cover duration-500 hover:shadow-lg hover:shadow-cyan-500/50'
             ></div>
             {/* Left Arrow */}
             <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>

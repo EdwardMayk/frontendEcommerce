@@ -129,8 +129,8 @@ const Dashboard = () => {
             {/* Header Image */}
             <HeaderImg imagen='/img/bg.jpg' />
 
-            <div className="text-black dark:text-white">
-                <div className="flex flex-col justify-center dark:text-white">
+            <div className="text-white">
+                <div className="flex flex-col justify-center text-white">
 
                     {/* Titulo y logo */}
                     <div className="flex justify-center flex-wrap min-w-full z-10 font-bold mt-40 mb-10 pb-10 md:pb-60">
@@ -144,10 +144,10 @@ const Dashboard = () => {
 
                                 {/* botones */}
                                 <div className="flex mt-6 text-sm font-sans pt-4">
-                                    <button className="rounded-lg bg-indigo-600 shadow-lg mr-4 px-4 py-2 text-white transition ease-in-out duration-300 hover:bg-pink-400">
+                                    <button className="rounded-lg bg-indigo-600 mr-4 px-4 py-2 text-white transition ease-in-out duration-300 hover:bg-pink-400 hover:shadow-lg hover:shadow-pink-500/50">
                                         <Link href={"/contact"}>Contáctanos</Link>
                                     </button>
-                                    <button className="flex rounded-lg bg-white text-black px-4 py-2 transition ease-in-out duration-300 hover:bg-gray-200">
+                                    <button className="flex rounded-lg bg-white text-black px-4 py-2 transition ease-in-out duration-300 hover:bg-gray-200 hover:shadow-lg hover:shadow-cyan-500/50">
                                         <Link href={"/store"} className='pr-2'>
                                             <p className='font-medium'>Nuestra Tienda!</p>
                                         </Link>
@@ -177,7 +177,7 @@ const Dashboard = () => {
 
                             {/* Linea */}
                             <div className="flex justify-center mb-6">
-                                <div className="bg-orange-200 dark:bg-white w-20 h-1 mt-1 rounded-sm"></div>
+                                <div className="bg-white w-20 h-1 mt-1 rounded-sm"></div>
                             </div>
                             {/* CONTENIDO */}
                             <section className="flex justify-center flex-wrap mb-4">
@@ -187,7 +187,7 @@ const Dashboard = () => {
                                 <button className='text-4xl'>Tienda</button>
                                 {/* Linea */}
                                 <div className="flex justify-center mb-6">
-                                    <div className="bg-orange-200 dark:bg-white w-20 h-1 mt-1 rounded-sm"></div>
+                                    <div className="bg-white w-20 h-1 mt-1 rounded-sm"></div>
                                 </div>
                                 <div className='flex justify-center flex-wrap'>
                                     <ProductComponent />
