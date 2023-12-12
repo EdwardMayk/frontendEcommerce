@@ -27,7 +27,7 @@ function Navbar() {
   };
 
   const navbarStyles = `
-    flex flex-row justify-between items-center px-8 py-4 fixed min-w-full z-50`;
+    flex flex-row justify-between items-center px-8 py-4 fixed min-w-full z-50 backdrop-blur-sm`;
 
   
   const LinkBar = () => {
@@ -55,7 +55,7 @@ function Navbar() {
           </li>
           <li className="md:mr-10 mb-2 md:mb-0 md:py-0 py-4">
             <Link href="/contact" className={linkStyle}>
-              Contáctanos
+              Nosotros
             </Link>
           </li>
           <li className={`md:mr-10 mb-2 md:mb-0 md:py-0 py-4 ${user && user.role === 'admin' ? '' : 'hidden'}`}>
