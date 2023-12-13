@@ -193,6 +193,7 @@ const Dashboard = () => {
                                     <ProductComponent />
                                     <ProductComponent />
                                     <ProductComponent />
+                                    <ProductComponent />
                                 </div>
                             </section>
                             <section>
