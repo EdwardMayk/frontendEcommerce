@@ -6,9 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faL, faPrint, faBars, faXmark, faCircleUser, faPenToSquare, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import { useGetUsersQuery } from '../../../graphql/generated/schema';
+import { faHome, faUser, faShoppingCart, faBox, faSearch } from '@fortawesome/free-solid-svg-icons';
+import NeonText from '@/components/neon/neonComp';
 
 export function AdminBar() {
   const [menu, setMenu] = useState(false)
+  const NeonColors = {
+    red: '#e15d43',
+    yellow: '#ffe30e'
+  }
   const changeMenu = () => {
     if (menu) {
       setMenu(false)
@@ -18,53 +24,55 @@ export function AdminBar() {
   }
   return (
     <>
-      {/* Barra superior */}
-      <div className='fixed p-4 min-w-full bg-cyan-400 z-50'>
-        <div className='flex justify-between'>
+      {/* Barra de Navegación */}
+      <div className={`fixed p-4 min-w-full bg-gray-800 z-50 ${menu ? 'bg-opacity-90' : ''}`}>
+        <div className='flex justify-between items-center'>
           <div className='flex items-center'>
             {menu ?
-              <FontAwesomeIcon icon={faXmark} size="xl" className='lg:hidden' onClick={changeMenu} />
+              <FontAwesomeIcon icon={faXmark} size="xl" className='lg:hidden text-yellow-500 hover:text-red-500 cursor-pointer' onClick={changeMenu} />
               :
-              <FontAwesomeIcon icon={faBars} size="xl" className='lg:hidden' onClick={changeMenu} />
+              <FontAwesomeIcon icon={faBars} size="xl" className='lg:hidden text-yellow-500 hover:text-red-500 cursor-pointer' onClick={changeMenu} />
             }
           </div>
           <div className='flex items-center'>
-            <Link href="/" className='text-2xl font-bold'>
-              <Image src="/images/RAGlogoFooter&NavBar.png" width={150} height={75} alt="" />
+            <Link href="/" className='text-2xl font-bold text-yellow-500 hover:text-red-500'>
+              <Image src="/images/LogoNavBArRAGWhite.png" width={150} height={75} alt="" />
             </Link>
           </div>
           <div className='flex items-center'>
-            <Link href="/profile" className="hover:text-gray-200">
+            <Link href="/profile" className="text-yellow-500 hover:text-red-500">
               <FontAwesomeIcon icon={faCircleUser} className="w-7 h-7" />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Barra lateral*/}
-      <div className={`lg:flex flex-col md:min-h-screen fixed p-2 bg-white w-full md:w-60 rounded-lg z-40 mt-20 shadow-lg ${menu ? 'lg:flex' : 'hidden'}`} id="sideNav">
-        <nav className='flex flex-col md:text-start text-center'>
-          <Link href="/admin" className='block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white'>
-            <span className='pl-2'>Inicio</span>
+      {/* Barra lateral Izquierda*/}      
+      <div className={`lg:flex flex-col md:min-h-screen fixed p-2 bg-gray-800 w-full md:w-48 z-40 mt-20 shadow-lg ${menu ? 'lg:flex' : 'hidden'}`} id="sideNav">
+        <nav className='flex flex-col md:text-start text-center justify-center items-center'>
+          <Link href="/admin" className='flex items-center text-yellow-500 py-2.5 px-4 my-4 rounded transition duration-150 focus:outline-none transform hover:scale-110 transition-transform'>
+            <FontAwesomeIcon icon={faHome} style={{ fontSize: '20px' }} className='mr-4' />
+            <NeonText texto='Inicio' neonColor={NeonColors.yellow} neonSecondary={NeonColors.yellow} size='2xl' />
           </Link>
-          <Link href="/adminUser" className='block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white'>
-            <span className='pl-2'>Usuarios</span>
+          <Link href="/adminUser" className='flex items-center text-yellow-500 py-2.5 px-4 my-4 rounded transition duration-150 focus:outline-none transform hover:scale-110 transition-transform'>
+            <FontAwesomeIcon icon={faUser} style={{ fontSize: '20px' }} className='mr-4' />
+            <NeonText texto='Usuarios' neonColor={NeonColors.yellow} neonSecondary={NeonColors.yellow} size='2xl' />
           </Link>
-          <Link href="/adminVenta" className='block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white'>
-            <span className='pl-2'>Ventas</span>
+          <Link href="/adminVenta" className='flex items-center text-yellow-500 py-2.5 px-4 my-4 rounded transition duration-150 focus:outline-none transform hover:scale-110 transition-transform'>
+            <FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: '20px' }} className='mr-4' />
+            <NeonText texto='Ventas' neonColor={NeonColors.yellow} neonSecondary={NeonColors.yellow} size='2xl' />
           </Link>
-          <Link href="/adminProduct" className='block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white'>
-            <span className='pl-2'>Productos</span>
+          <Link href="/adminProduct" className='flex items-center text-yellow-500 py-2.5 px-4 my-4 rounded transition duration-150 focus:outline-none transform hover:scale-110 transition-transform'>
+            <FontAwesomeIcon icon={faBox} style={{ fontSize: '20px' }} className='mr-4' />
+            <NeonText texto='Productos' neonColor={NeonColors.yellow} neonSecondary={NeonColors.yellow} size='2xl' />
           </Link>
         </nav>
       </div>
     </>
-
   )
 }
 
 const AdminHome = () => {
-  // TABLE TEXT
 
   const { data: usersData, loading: usersLoading, error: usersError } = useGetUsersQuery();
   const formatDate = (dateString: string): string => {
@@ -87,25 +95,18 @@ const AdminHome = () => {
   return (
     <>
       <div>
-        {/* <Navbar /> */}
-
         <AdminBar />
-
-        {/* component */}
-        <div className="flex flex-col min-h-screen bg-gray-100 pt-16 lg:pl-60">
-
+        <div className="flex flex-col min-h-screen bg-gray-800 pt-16 lg:pl-48">
           <div className="flex-1 flex flex-wrap">
-
-
             {/* Área de contenido principal */}
             <div className="flex-1 p-4 w-full md:w-1/2">
               {/* Contenedor de Gráficas */}
-              <div className="mt-8 flex flex-wrap justify-between space-x-0 space-y-2 md:space-x-4 md:space-y-0">
+              <div className="flex flex-wrap justify-between space-x-0 space-y-2 md:space-x-4 md:space-y-0">
                 {/* Sección 1 - Gráfica de Usuarios */}
                 <div className="flex-1 bg-white p-4 shadow rounded-lg lg:w-1/2">
                   <h2 className="text-gray-500 text-lg font-semibold pb-1">Gráfica de Usuarios</h2>
                   <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6" /> {/* Línea con gradiente */}
-                  <div className="chart-container" style={{ position: 'relative', height: '150px', width: '100%' }}>
+                  <div className="chart-container" style={{ position: 'relative', height: '250px', width: '100%' }}>
                     {/* El canvas para la gráfica */}
                     <canvas id="usersChart" />
                   </div>
@@ -130,9 +131,6 @@ const AdminHome = () => {
                     )}
                   </div>
 
-
-
-
                 </div>
                 {/* Sección 2 - Gráfica de Comercios */}
                 <div className="flex-1 bg-white p-4 shadow rounded-lg lg:w-1/2">
@@ -146,18 +144,23 @@ const AdminHome = () => {
               </div>
               {/* Tercer contenedor debajo de los dos anteriores */}
               {/* Sección 3 - Tabla de Autorizaciones Pendientes */}
-              <div className="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 className="text-gray-500 text-lg font-semibold pb-4">Reportes de Usuarios</h2>
-                <div className="relative max-w-md w-full">
-                  <div className="absolute top-1 left-2 inline-flex items-center p-2">
-                    <i className="fas fa-search text-gray-400" />
+              <div className="mt-4 bg-white p-4 shadow rounded-lg relative">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-gray-500 text-lg font-semibold pb-4">Reportes de Usuarios</h2>
+                  <div className="relative">
+                    <div className="absolute top-1 right-4 inline-flex items-center p-2">
+                      <FontAwesomeIcon icon={faSearch} className="text-gray-600" />
+                    </div>
+                    <input
+                      className="w-full h-10 pl-8 pr-8 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
+                      type="search"
+                      placeholder="Buscar usuario..."
+                    />
                   </div>
-                  <input className="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline" type="search" placeholder="Buscar..." />
                 </div>
-                <div className="my-1" /> {/* Espacio de separación */}
-                <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6" /> {/* Línea con gradiente */}
+                <div className="my-1" />
+                <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6" />
 
-                {/* TABLA DE USUARIOS */}
                 <table className="w-full table-auto text-sm">
                   <thead>
                     <tr className="text-sm leading-normal">
@@ -194,34 +197,41 @@ const AdminHome = () => {
                         </div>
                       </td>
                     </tr>
-
                   </tbody>
                 </table>
 
                 <div className="text-right mt-4">
-                  <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded mr-2">
-                    <FontAwesomeIcon icon={faEye} className="mr-2" />
+                  <button className="bg-gray-800 hover:bg-gray-900 text-yellow-500 font-semibold py-2 px-4 rounded mr-2">
+                    <FontAwesomeIcon icon={faEye} className="mr-2 text-yellow-500" />
                     Ver más
                   </button>
-                  <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
-                    <FontAwesomeIcon icon={faPrint} className="mr-2" />
+                  <button className="bg-gray-800 hover:bg-gray-900 text-yellow-500 font-semibold py-2 px-4 rounded">
+                    <FontAwesomeIcon icon={faPrint} className="mr-2 text-yellow-500" />
                     Imprimir
                   </button>
                 </div>
               </div>
 
               {/* Cuarto contenedor */}
-              {/* Sección 4 - Tabla de Transacciones */}
-              <div className="mt-8 bg-white p-4 shadow rounded-lg">
-                <div className="bg-white p-4 rounded-md">
-                  <h2 className="text-gray-500 text-lg font-semibold pb-4">Reportes de Ventas</h2>
-                  <div className="relative max-w-md w-full">
-                    <div className="absolute top-1 left-2 inline-flex items-center p-2">
-                      <i className="fas fa-search text-gray-400" />
+              {/* Sección 4 - Tabla de Ventas */}
+              <div className="mt-4 bg-white  shadow rounded-lg relative">
+                <div className="bg-white p-4 rounded-md ">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-gray-500 text-lg font-semibold pb-4">Reportes de Ventas</h2>
+
+                    {/* Barra de búsqueda */}
+                    <div className="relative">
+                      <div className="absolute top-1 right-4 inline-flex items-center p-2">
+                        <FontAwesomeIcon icon={faSearch} className="text-gray-600" />
+                      </div>
+                      <input
+                        className="w-full h-10 pl-8 pr-8 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
+                        type="search"
+                        placeholder="Buscar venta..."
+                      />
                     </div>
-                    {/* Buscador */}
-                    <input className="w-full h-10 pl-10 pr-4 py-2 text-base placeholder-gray-500 border rounded-full focus:shadow-outline" type="search" placeholder="Buscar..." />
                   </div>
+
                   <div className="my-1" />
                   <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6" /> {/* Línea con gradiente */}
 
@@ -261,12 +271,12 @@ const AdminHome = () => {
                   </table>
 
                   <div className="text-right mt-4">
-                    <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded mr-2">
-                      <FontAwesomeIcon icon={faEye} className="mr-2" />
+                    <button className="bg-gray-800 hover:bg-gray-900 text-yellow-500 font-semibold py-2 px-4 rounded mr-2">
+                      <FontAwesomeIcon icon={faEye} className="mr-2 text-yellow-500" />
                       Ver más
                     </button>
-                    <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
-                      <FontAwesomeIcon icon={faPrint} className="mr-2" />
+                    <button className="bg-gray-800 hover:bg-gray-900 text-yellow-500 font-semibold py-2 px-4 rounded">
+                      <FontAwesomeIcon icon={faPrint} className="mr-2 text-yellow-500" />
                       Imprimir
                     </button>
                   </div>
@@ -275,7 +285,6 @@ const AdminHome = () => {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
