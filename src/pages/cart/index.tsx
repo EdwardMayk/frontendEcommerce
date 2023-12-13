@@ -62,19 +62,24 @@ const Cart = () => {
     return (
         <>
             <Navbar />
-
-            <div className="bg-gray-100 min-h-screen py-8">
+            
+            <div className="bg-neutral-900 min-h-screen py-8">
+                
                 <div className="container mx-auto px-4">
-                    <h1 className="text-2xl font-semibold mb-4">Carrito</h1>
+                    <h1 className="text-2xl font-semibold mb-4"></h1>
 
                     <div>
-
+                        <br />
+                        <br />
+                        <br />
                         <DetailsCart />
                     </div>
+                    <br />
+                    <br />
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="md:col-span-2">
-                            <div className="bg-white rounded-lg shadow-md p-4 mb-4 overflow-x-auto">
+                            <div className="bg-gray-100  rounded-lg shadow-md p-4 mb-4 overflow-x-auto">
                                 <table className="w-full">
                                     <thead>
                                         <tr>
@@ -115,7 +120,7 @@ const Cart = () => {
                             </div>
                         </div>
                         <div className="md:col-span-1 mt-4">
-                            <div className="bg-white rounded-lg shadow-md p-4">
+                            <div className="bg-gray-100  rounded-lg shadow-md p-4">
                                 <h2 className="text-lg font-semibold mb-4">Resumen</h2>
                                 <div className="mb-4 border border-gray-300 p-4 rounded-lg flex justify-between items-center">
                                     <label className="flex items-center">

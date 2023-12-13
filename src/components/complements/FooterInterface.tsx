@@ -18,7 +18,7 @@ const FooterInterface = () => {
         <footer className="text-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 md:py-16">
                 <div className="max-w-lg sm:mx-auto sm:text-center">
                     <div className="flex justify-center items-center">
-                        <Image src="/img/Logo5.png" width={200} height={100} alt="" />
+                        <Image src="/img/logo5.png" width={200} height={100} alt="" />
                     </div>                    
                     <p className="leading-relaxed mt-2 text-[15px]">
                     Descubre un mundo de innovación y estilo con RAG Tienda. Enamórate de la tecnología que redefine tu vida diaria. Desde gadgets futuristas hasta accesorios con estilo, hacemos que la electrónica sea emocionante. ¡Explora el futuro con nosotros!
