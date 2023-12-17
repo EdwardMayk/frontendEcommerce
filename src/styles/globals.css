@@ -2,17 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-    background-color: white; /* Cambia el color a gris claro según tu preferencia */
+@media print {
+  [data-printable] {
+    display: none !important;
+  }
 }
 
-/* Neon styles */
+body {
+    background-color: white;
+    overflow-x: hidden
+}
+
 .neon-text {
   width: 100%;
   line-height: 0.70em;
   outline: none;
   animation: animate 5s linear infinite;
+}
+
+.table-container {
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 @keyframes animate 
@@ -33,7 +43,6 @@ body {
   }
 }
 
-/* Typing Styles */
 .typingeffect {
   display: block;
   border-right: 4px solid;

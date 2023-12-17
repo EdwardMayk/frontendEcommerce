@@ -115,7 +115,7 @@ function Navbar() {
         {/* Logo */}
         <div className="flex items-center space-x-4 mb-4 md:mb-0">
           <Link href="/" className="text-2xl font-bold">
-            <Image src="/img/Logo5.png" width={150} height={75} alt="" />
+            <Image src="/images/LogoNavBArRAGWhite.png" width={150} height={75} alt="" />
           </Link>
         </div>
 
