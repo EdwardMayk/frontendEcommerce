@@ -1,4 +1,5 @@
 'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { CSSProperties, useEffect, useState } from "react"
@@ -49,24 +50,21 @@ export default function NavBarComp() {
 
     )
 }
-
 export function HeaderImg({ imagen }: { imagen: string }) {
-    const divbg: CSSProperties = {
-        backgroundImage: `url('${imagen}')`,
+    console.log(imagen);
+    
+    const divbg : CSSProperties = {
+        background: `url('${imagen}')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
         position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 1,
-    };
-
+        minHeight: '100vh',
+        width: '100vw',
+        zIndex: 1
+    }
     return (
+        // No tocar el Style :v
         <div style={divbg}>
-            <div className="min-w-full min-h-screen bg-black z-10 absolute opacity-60"></div>
+            <div className="min-w-full min-h-screen bg-black z-10 absolute opacity-80"></div>
         </div>
-    );
+    )
 }
