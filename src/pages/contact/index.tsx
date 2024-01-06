@@ -1,140 +1,182 @@
 import Navbar from '@/components/navbar';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { Image, Link } from '@nextui-org/react';
-import { HeaderImg } from '@/components/navbarComp';
-import { ProductComponent, Product2Component, SliderProducts } from '@/components/product';
+import { faEnvelope, faEye, faHandsHelping, faHeart, faMapMarkerAlt, faPhone, faPhoneAlt, faRoute } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import Image from 'next/image';
 import NeonText from '@/components/neon/neonComp';
 import TypingEffect from '@/components/neon/typingEffect';
 import FooterInterface from '@/components/complements/FooterInterface';
+import Link from 'next/link';
+
 
 function Contacto() {
   const NeonColors = {
     pink: '#ea00d9',
     sky: '#0abdc6'
   }
-  const texto = 'Somos tu destino gaming definitivo. En RAG, ofrecemos piezas de alta calidad, periféricos y más para llevar tu experiencia de juego al siguiente nivel. Descubre productos de última generación y un equipo apasionado listo para asesorarte. Únete a nuestra comunidad gaming y vive la excelencia en cada clic. ¡Juega en serio con RAG!'
+
+  const contactMethods = [
+    {
+      icon:
+        <FontAwesomeIcon icon={faRoute} className="w-7 h-7" />
+      ,
+      contact: "Av. Giráldez 274, Huancayo 12001",
+      title: "Nuestras oficinas"
+    },
+    {
+      icon:
+        <FontAwesomeIcon icon={faPhone} className="w-7 h-7" />
+      ,
+      contact: "+51 949 494 666",
+      title: "Celular"
+    },
+    {
+      icon:
+        <FontAwesomeIcon icon={faEnvelope} className="w-7 h-7" />
+      ,
+      contact: "redaparatusgaming@gmail.com",
+      title: "Correo Electrónico"
+    },
+  ]
+
   return (
     <>
       <Navbar />
-      <HeaderImg imagen='/img/bg9.jpg' />
-      <div className="text-white">
-        <div className="flex flex-col justify-center text-white">
-          {/* Titulo y logo */}
-          <div className="flex flex-row justify-center flex-wrap min-w-full z-10 font-bold mt-40 mb-10 pb-10 md:pb-60">
-            {/* TÍTULO */}
-            <div className="flex flex-col mr-2 pr-4 md:pr-0">
-              <p className="mb-4 text-white text-xl text-right">Hola, Bienvenido a RAG!</p>
+      {/* <HeaderImg imagen='/img/bg9.jpg' /> */}
+      <div className="relative overflow-hidden bg-cover bg-no-repeat bg-center bg-[100%] bg-[url('https://cdna.artstation.com/p/assets/images/images/047/098/224/original/pixel-jeff-signs.gif?1646758669')] h-[2000px]">
+        <div className="absolute top-0 left-0 w-full h-full bg-white opacity-40 z-10 dark:bg-black opacity-40"></div>
+        <section className="text-white relative z-20">
+          <div className="flex flex-row justify-center flex-wrap min-w-full font-bold mt-32 mb-10 pb-10 md:pb-32">
+            <div className="flex flex-col mr-1 pr-2 md:pr-0">
+              <p className="mb-2 text-white text-xl text-right">¡Hola, Bienvenido a RAG!</p>
               <div className="text-6xl">
-                <div className="text-white text-right">
-                  <NeonText texto='Red Aparatus' neonColor={NeonColors.sky} neonSecondary={NeonColors.sky} size='6xl' />
-                  <NeonText texto='Gaming' neonColor={NeonColors.pink} neonSecondary={NeonColors.pink} size='6xl' />
-                </div>
-                {/* botones */}
-                <div className="flex justify-end mt-6 text-sm font-sans pt-4">
-                  <button className="flex rounded-lg bg-pink-400 text-white px-4 py-2 transition ease-in-out duration-300 hover:bg-cyan-400 hover:text-gray-800 hover:shadow-lg hover:shadow-cyan-500/50">
-                    <Link href={"/store"} className='pr-2'>
-                      <p className='font-medium'>Nuestra Tienda!</p>
-                    </Link>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                      <path fillRule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clipRule="evenodd" />
-                    </svg>
-                  </button>
+                <div className="mb-6 text-white text-right">
+                  <NeonText texto='Red Aparatus' neonColor={NeonColors.sky} neonSecondary={NeonColors.sky} size='7xl' />
+                  <NeonText texto='Gaming' neonColor={NeonColors.pink} neonSecondary={NeonColors.pink} size='7xl' />
                 </div>
               </div>
             </div>
-
-            {/* TEXTO */}
-            <div className='flex justify-center items-center m-4 lg:w-1/4 lg:ml-10 pt-2 lg:pt-0'>
-              <p className='text-justify lg:text-left'>{texto}</p>
+            <div className='flex justify-center items-center m-1 lg:w-1/4 lg:ml-10 pt-2 px-3 lg:pt-0'>
+              <p className='text-justify lg:text-left text-white'>Somos tu destino gaming definitivo. En RAG, ofrecemos piezas de alta calidad, periféricos y más para llevar tu experiencia de juego al siguiente nivel. Descubre productos de última generación y un equipo apasionado listo para asesorarte. Únete a nuestra comunidad gaming y vive la excelencia en cada clic. ¡Juega en serio con RAG!</p>
             </div>
           </div>
-
-          {/* CONTENEDOR GRIS */}
-          <div className="flex justify-center bg-neutral-950 z-20 mt-4 pt-4 min-w-full">
-            <div className="font-bold z-20">
-              <p className="text-center text-4xl">¡Ubícanos!</p>
-              {/* CONTENIDO */}
-              <section className='flex flex-col justify-center flex-wrap'>
-
-                {/* Linea */}
-                <div className="flex justify-center mb-6">
-                  <div className="bg-orange-200 dark:bg-white w-20 h-1 mt-1 rounded-sm"></div>
+        </section>
+        <section className="text-white py-8 relative z-20">
+          <div className="text-white max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-extrabold">Lo que nos define</h2>
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div>
+                <div className="flex items-center justify-center h-12 w-12 rounded-md text-white">
+                  <FontAwesomeIcon icon={faHandsHelping} className="w-10 h-10" />
                 </div>
-                <section className="bg-white" id="contact">
-                  <section className="bg-neutral-950">
-                    <div className="container px-6 py-12 mx-auto">
-                      <div className="text-center"></div>
-                      <div className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
-                        <div className="flex flex-col items-center justify-center text-center">
-                          <span className="p-4 text-white">
-                            <FontAwesomeIcon icon={faEnvelope} className="w-8 h-8" />
-                          </span>
-                          <h2 className="text-xl font-medium text-gray-800 dark:text-white">Correo</h2>
-                          <p className="mt-2 text-gray-500 dark:text-gray-400">Nuestro equipo podrá ayudarte en lo que necesites.</p>
-                          <p className="mt-2 text-blue-500 dark:text-blue-400 text-lg">redaparatusgaming@gmail</p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center text-center">
-                          <span className="p-4 text-white">
-                            <FontAwesomeIcon icon={faMapMarkerAlt} className="w-8 h-8" />
-                          </span>
-                          <h2 className="text-xl font-medium text-gray-800 dark:text-white">Oficina</h2>
-                          <p className="mt-2 text-gray-500 dark:text-gray-400">Ubícanos en:</p>
-                          <p className="mt-2 text-blue-500 dark:text-blue-400 text-lg">
-                            Av. Giráldez 274, Huancayo 12001
-                          </p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center text-center">
-                          <span className="text-white">
-                            <FontAwesomeIcon icon={faWhatsapp} className="w-10 h-10" />
-                          </span>
-                          <h2 className="mt-4 text-xl font-medium text-gray-800 dark:text-white">WhatsApp</h2>
-                          <p className="mt-2 text-gray-500 dark:text-gray-400">Escríbenos al WhatsApp para cualquier consulta.</p>
-                          <p className="mt-2 text-blue-500 dark:text-blue-400 text-lg">+51 949 494 666</p>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </section>
-              </section>
-
-              <section className="text-gray-700 body-font relative">
-                <div className="absolute inset-0 bg-gray-300">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    frameBorder={0}
-                    marginHeight={0}
-                    marginWidth={0}
-                    title="map"
-                    scrolling="no"
-                    src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.6524589700516!2d-75.21086722398317!3d-12.067416442287616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e972e6999c32f%3A0xc05d2364afa5f373!2sRAG!5e0!3m2!1ses-419!2spe!4v1700691446218!5m2!1ses-419!2spe&amp;mode=night`}
-                    style={{ filter: " contrast(1.2) opacity(0.7)" }}
-                  />
+                <div className="mt-5">
+                  <h3 className="text-lg font-medium text-white" style={{ fontWeight: 'bold' }}>Misión</h3>
+                  <p className="mt-2 font-medium text-base text-white">Somos una empresa de tecnología enfocada en brindar los mejores productos del mercado a todos nuestros clientes. Nos enfocamos en la satisfacción del cliente, brindando productos que combinen calidad, rendimiento y estilo siempre adaptándonos a nuestro mundo en constante cambio.</p>
                 </div>
-                <div className="container px-5 py-24 mx-auto flex">
-                  <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 md:ml-auto w-full mt-10 md:mt-0 relative z-10">
-                    <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">
-                      Escríbenos_
-                      <Link href="https://wa.link/8gi5go" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                        Al WhatsApp
-                      </Link>
-                    </h2>
-                    <div className="flex justify-center items-center mt-4">
-                      <Image src="/images/QR.png" width={300} height={300} alt="" />
-                    </div>
-                  </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-center h-12 w-12 rounded-md text-white">
+                  <FontAwesomeIcon icon={faHeart} className="w-10 h-10" />
                 </div>
-              </section>
-              <section>
-                <FooterInterface />
-              </section>
+                <div className="mt-5">
+                  <h3 className="text-lg font-medium text-white" style={{ fontWeight: 'bold' }}>Valores</h3>
+                  <p className="mt-2 font-medium text-base text-white">Los valores pilares de nuestra empresa son la transparencia, integridad y ética, calidad en productos y servicio, adaptabilidad y por último pero no menos importante el crecimiento sostenible de la empresa.</p>
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-center h-12 w-12 rounded-md text-white">
+                  <FontAwesomeIcon icon={faEye} className="w-10 h-10" />
+                </div>
+                <div className="mt-5">
+                  <h3 className="text-lg font-medium text-white" style={{ fontWeight: 'bold' }}>Visión</h3>
+                  <p className="mt-2 font-medium text-base text-white">Ser reconocidos como el punto de referencia en la industria de ventas de todo tipo de tecnologías, aportando constantemente innovación y soluciones, manteniendo siempre un compromiso absoluto con nuestros clientes y contribuyendo al crecimiento sostenible de nuestra empresa.</p>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
+        <section className="text-white relative z-20">
+          <div className="flex flex-col items-center pt-8">
+            <p className="mb-2 mt-6 text-white text-lg" style={{ fontWeight: 'bold' }}>¡Síguenos en Nuestras Redes!</p>
+            <div className="flex text-xl space-x-4">
+              <ul className="flex items-center space-x-4">
+                <li className="w-10 h-10 flex items-center rounded-full">
+                  <Link href="URL_DE_FACEBOOK">
+                    <FontAwesomeIcon icon={faFacebook} className="text-white w-10 h-10" />
+                  </Link>
+                </li>
+                <li className="w-10 h-10 flex items-center rounded-full">
+                  <Link href="https://wa.link/8trd61">
+                    <FontAwesomeIcon icon={faWhatsapp} className="text-white w-10 h-10" />
+                  </Link>
+                </li>
+                <li className="w-10 h-10 flex items-center rounded-full">
+                  <Link href="URL_DE_TELEGRAM">
+                    <FontAwesomeIcon icon={faTelegram} className="text-white w-10 h-10" />
+                  </Link>
+                </li>
+                <li className="w-10 h-10 flex items-center rounded-full">
+                  <Link href="URL_DE_INSTAGRAM">
+                    <FontAwesomeIcon icon={faInstagram} className="text-white w-10 h-10" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 flex justify-center items-center z-20">
+            <Image
+              alt="QR"
+              src={'/img/QR.png'}
+              quality={100}
+              width={250}
+              height={250}
+              className="rounded-xl"
+            />
+          </div>
+        </section>
+      </div>
+      <div className="max-w-screen mx-auto px-8 text-gray-600 md:px-80 bg-black pt-24">
+        <div className="max-w-xl space-y-5 text-white">
+          <h3 className="text-2xl font-bold">
+            ¡Visítanos!
+          </h3>
+          <p className="text-4xl font-semibold sm:text-5xl">
+            Te esperamos en nuestras oficinas
+          </p>
+          <p className="text-lg">
+            Estamos disponibles para ti, para resolver cualquier duda, para consultar sobre algún producto o para asesorarte en lo que necesites.
+          </p>
+        </div>
+        <div>
+          <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-6 items-center lg:gap-x-24">
+            {contactMethods.map((item, idx) => (
+              <li key={idx} className="text-white">
+                <h4 className="text-xl font-medium">{item.title}</h4>
+                <div className="mt-3 mb-12 flex items-center gap-x-3">
+                  <div className="flex-none">{item.icon}</div>
+                  <p className="flex-none">{item.contact}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+      <div className="bg-black flex items-center justify-center bg-black">
+        <iframe
+          width="1300px"
+          height="600px"
+          title="map"
+          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.6524589700516!2d-75.21086722398317!3d-12.067416442287616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e972e6999c32f%3A0xc05d2364afa5f373!2sRAG!5e0!3m2!1ses-419!2spe!4v1700691446218!5m2!1ses-419!2spe&amp;mode=night&z=15`}
+          style={{
+            filter: "contrast(1.2) opacity(0.7)", //grayscale(1)
+            borderRadius: "10px",
+          }}
+        />
+      </div>
+      <section className='bg-black'>
+        <FooterInterface />
+      </section>
     </>
   );
 }
