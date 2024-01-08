@@ -115,7 +115,7 @@ function Navbar() {
         {/* Logo */}
         <div className="flex items-center space-x-4 mb-4 md:mb-0">
           <Link href="/" className="text-2xl font-bold">
-            <Image src="/img/Logo5.png" width={150} height={75} alt="" />
+            <Image src="/img/LogoRAG4W.png" width={150} height={75} alt="" />
           </Link>
         </div>
 
@@ -135,11 +135,9 @@ function Navbar() {
       <div className={`${menu ? "hidden" : "flex"} flex-col fixed min-w-full min-h-screen bg-black z-50`}>
         <div className='flex justify-end px-8 py-9'>
           {menu ?
-
             <><FontAwesomeIcon icon={faBars} size="2xl" className='md:hidden' onClick={hamburgerMenu} /></> :
             <><FontAwesomeIcon icon={faXmark} style={{ color: darkMode ? '#ffffff' : '#ffffff' }} beat size="2xl" className='md:hidden' onClick={hamburgerMenu} /></>
           }
-
         </div>
         <div className='flex flex-col bg-black justify-center items-center min-h-[calc(80vh)]'>
           <LinkBar />

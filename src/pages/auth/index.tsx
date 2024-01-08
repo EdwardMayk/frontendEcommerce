@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router'; // Change "next/navigation" to "next/router"
+import { useRouter } from 'next/router';
 import { useLoginMutation } from '../../../graphql/generated/schema';
-
-import Navbar from '@/components/navbar';
 import Link from 'next/link';
 import { useUser } from '@/context/UserContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faEye, faEyeSlash, faKey, faLock } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
+  const [isPasswordHidden, setPasswordHidden] = useState(true)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useUser();
@@ -60,64 +61,109 @@ function Login() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center bg-white">
-        <div className="mr-8 mb-4 sm:mb-0">
-          <Image src="/images/audifonos.png" width={800} height={400} alt="logo_dashboard" />
-        </div>
-
-        <div className="w-full sm:w-96 bg-white p-8 rounded shadow-md">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">Inicia sesión</h2>
-          <form className="space-y-4" onSubmit={handleLogin}>
+      <main className="h-screen bg-gray-900 lg:flex flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 py-16 space-y-4 z-20">
+          <div className="flex items-center justify-center">
+            <Image
+              alt=""
+              src={'/img/LogoRAG4.png'}
+              quality={100}
+              width={250}
+              height={250}
+              className="rounded-full"
+            />
+          </div>
+          <div className="text-center">
+            <h3 className="mt-4 text-gray-800 text-2xl font-bold sm:text-3xl pt-5">Iniciar Sesión</h3>
+            <div className="mt-5 space-y-2 text-gray-400">
+              ¿Aún no tienes una cuenta?
+              <Link href={"/register"} className='ml-1 font-medium text-indigo-600 hover:text-indigo-500'>
+                Regístrate
+              </Link>
+            </div>
+          </div>
+          <form onSubmit={handleLogin} className="mt-8 space-y-5">
             <div>
-              <p className="text-gray-600 mt-4 text-center sm:text-left">
-                ¿Aún no tienes una cuenta? <Link href="/register" className="text-blue-500">Regístrate</Link>
-              </p>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-                Email
+              <label htmlFor="username" className="font-medium text-gray-500">
+                Correo Electrónico
               </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                className="mt-1 p-2 w-full border rounded-md"
-                required
-                value={email}
-                onChange={handleEmailChange}
-              />
+              <div className="relative mt-2">
+                <FontAwesomeIcon icon={faEnvelope} className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto" />
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  placeholder="Ingrese su correo electrónico"
+                  className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </div>
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+              <label htmlFor="password" className="font-medium text-gray-500">
                 Contraseña
               </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="mt-1 p-2 w-full border rounded-md"
-                required
-                value={password}
-                onChange={handlePasswordChange}
-              />
+              <div className="relative mt-2">
+                <FontAwesomeIcon icon={faKey} className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto" />
+                <div className="flex items-center">
+                  <button
+                    className="text-gray-400 absolute right-3 inset-y-0 my-auto active:text-gray-600"
+                    onClick={() => setPasswordHidden(!isPasswordHidden)}
+                  >
+                    {isPasswordHidden ? (
+                      <FontAwesomeIcon icon={faEyeSlash} className="w-6 h-6" />
+                    ) : (
+                      <FontAwesomeIcon icon={faEye} className="w-6 h-6" />
+                    )}
+                  </button>
+                  <input
+                    type={isPasswordHidden ? "password" : "text"}
+                    id="password"
+                    name="password"
+                    required
+                    placeholder="Ingrese su contraseña"
+                    className="w-full pr-12 pl-12 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="rememberMe" name="rememberMe" className="mr-2" />
-              <label htmlFor="rememberMe" className="text-sm text-gray-600">
-                Recuérdame
+            <div className="px-3 flex items-center">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                name="rememberMe"
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-400 rounded"
+              />
+              <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-600">
+                Recordar mis credenciales
               </label>
             </div>
-            <Link href="/recovery" className="text-sm text-blue-500 text-center">
-              ¿Has olvidado la contraseña?
-            </Link>
             <button
               type="submit"
-              className="w-full bg-black text-white py-2 rounded-md hover:bg-green-600"
+              className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
               disabled={loading}
             >
               Iniciar Sesión
             </button>
+            <div className="text-center">
+              <Link href="/recoverypass" className="hover:text-indigo-600 text-gray-400">
+                ¿Has olvidado la contraseña?
+              </Link>
+            </div>
           </form>
         </div>
-      </div>
+        <div
+          className="absolute inset-0 my-auto h-[500px] rounded-full"
+          style={{
+            background: "linear-gradient(rgba(192, 132, 252, 0.2), rgba(232, 121, 249, 0.26), rgba(192, 132, 252, 0.1))",
+            filter: "blur(40px)"
+          }}
+        />
+      </main>
     </>
   );
 }
