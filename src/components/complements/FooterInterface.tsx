@@ -12,14 +12,30 @@ const FooterInterface = () => {
         { name: 'Contáctanos', href: '/contacto' },
     ];
 
+    const ColorsBWDiv = "text-black dark:text-white bg-gray-100 dark:bg-black"
+    const ColorsBWIcons = "inline-block text-blue-600 dark:text-white"
+
     return (
         <>
-            <footer className="text-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 md:py-16">
+            <footer className={`px-4 py-5 max-w-screen-xl mx-auto md:px-8 md:py-16 ${ColorsBWDiv}`}>
                 <div className="max-w-lg sm:mx-auto sm:text-center">
                     <div className="mt-48 flex justify-center items-center">
-                        <Image src="/img/LogoRAG4W.png" width={180} height={100} alt="" />
+                        <Image
+                            alt=""
+                            src={'/img/LogoRAG4.png'}
+                            width={190}
+                            height={0}
+                            className="dark:hidden"
+                        />
+                        <Image
+                            alt=""
+                            src={'/img/LogoRAG4W.png'}
+                            width={190}
+                            height={0}
+                            className="hidden dark:block"
+                        />
                     </div>
-                    <p className="leading-relaxed mt-5 text-[15px]">
+                    <p className="font-semibold leading-relaxed mt-5 text-[15px]">
                         Descubre un mundo de innovación y estilo con RAG Tienda. Enamórate de la tecnología que redefine tu vida diaria. Desde gadgets futuristas hasta accesorios con estilo, hacemos que la electrónica sea emocionante. ¡Explora el futuro con nosotros!
                     </p>
                 </div>
@@ -36,32 +52,38 @@ const FooterInterface = () => {
                     ))}
                 </ul>
                 <div className="mt-8 items-center justify-between sm:flex">
-                    <div className="mt-4 sm:mt-0">
+                    <div className={`mt-4 sm:mt-0 font-semibold ${ColorsBWIcons} `}>
                         &copy; Copyright © 2023 RAG Tienda - All rights reserved.
+
+                        <p className='font-normal'>
+                            <Link href="/DevelopersTeam">
+                                Equipo de desarrolladores
+                            </Link>
+                        </p>
                     </div>
-                    <div className="mt-6 sm:mt-0">
+                    <div className={`mt-6 sm:mt-0`}>
                         <ul className="flex items-center space-x-4">
                             <li className="w-10 h-10 flex items-center justify-center">
                                 <Link href="URL_DE_FACEBOOK">
-                                    <FontAwesomeIcon icon={faFacebook} style={{ fontSize: '1.6rem' }} />
+                                    <FontAwesomeIcon icon={faFacebook} style={{ fontSize: '1.6rem' }} className={` ${ColorsBWIcons} `} />
                                 </Link>
                             </li>
 
                             <li className="w-10 h-10 flex items-center justify-center">
                                 <Link href="https://wa.link/8trd61">
-                                    <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: '1.6rem' }} />
+                                    <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: '1.6rem' }} className={` ${ColorsBWIcons} `} />
                                 </Link>
                             </li>
 
                             <li className="w-10 h-10 flex items-center justify-center">
                                 <Link href="URL_DE_TELEGRAM">
-                                    <FontAwesomeIcon icon={faTelegram} style={{ fontSize: '1.6rem' }} />
+                                    <FontAwesomeIcon icon={faTelegram} style={{ fontSize: '1.6rem' }} className={` ${ColorsBWIcons} `} />
                                 </Link>
                             </li>
 
                             <li className="w-10 h-10 flex items-center justify-center">
                                 <Link href="URL_DE_INSTAGRAM">
-                                    <FontAwesomeIcon icon={faInstagram} style={{ fontSize: '1.6rem' }} />
+                                    <FontAwesomeIcon icon={faInstagram} style={{ fontSize: '1.6rem' }} className={` ${ColorsBWIcons} `} />
                                 </Link>
                             </li>
 

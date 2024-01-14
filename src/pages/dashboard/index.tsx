@@ -86,7 +86,7 @@ const LogosMarcas = () => {
                     <Image
                         width={200}
                         height={30}
-                        src="/img/logoAsusW.png"
+                        src="/img/logoAsusWh.png"
                         className="object-contain"
                         alt=""
                     />
@@ -139,7 +139,7 @@ const Dashboard = () => {
                                 <button className="rounded-lg bg-indigo-600 mr-4 px-4 py-2 text-white transition ease-in-out duration-300 hover:bg-pink-400 hover:shadow-lg hover:shadow-pink-500/50">
                                     <Link href={"/contact"}>¿Quienes somos?</Link>
                                 </button>
-                                <button className="flex rounded-lg bg-white text-black px-4 py-2 transition ease-in-out duration-300 hover:bg-gray-200 hover:shadow-lg hover:shadow-cyan-500/50">
+                                <button className="animate-bounce flex rounded-lg bg-white text-black px-4 py-2 transition ease-in-out duration-300 hover:bg-gray-200 hover:shadow-lg hover:shadow-cyan-500/50">
                                     <Link href={"/store"} className='pr-2'>
                                         <p className='font-medium'>Visita Nuestra Tienda!</p>
                                     </Link>
