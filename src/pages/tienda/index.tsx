@@ -1,3 +1,5 @@
+import { useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
 import Dropdown from '@/components/complements/Dropdown';
 import FilterProductStore from '@/components/complements/FilterProductsStore';
 import FooterInterface from '@/components/complements/FooterInterface';
@@ -7,7 +9,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+
+`const ADD_TO_WISHLIST = gql
+  mutation addToWishlist($productId: ID!) {
+    addToWishlist(productId: $productId) {
+      titulo,
+      imagen,
+      descCorta,
+      precio,
+      precioNormal
+      message
+      // Puedes devolver más datos según tus necesidades
+    }
+  }
+`;
+
 const Tienda = () => {
+    `const [addToWishlistMutation] = useMutation(ADD_TO_WISHLIST); `
 
     const productos = [
         { titulo: "Teclado Redragon BRAHMA K586RGB PRO Spanish", imagen: "/img/TecladoRedragonBrahma.png", DescCorta: "Teclado Opto-Mecánico, Switch Outemu Blue, LED RGB, Español, 100% Anti-Ghosting, Macros, Multimedia, Perfiles", precio: "340", precioNormal: "390" },
@@ -26,7 +44,23 @@ const Tienda = () => {
         { titulo: "Teclado Redragon BRAHMA K586RGB PRO Spanish", imagen: "/img/TecladoRedragonBrahma.png", DescCorta: "Teclado Opto-Mecánico, Switch Outemu Blue, LED RGB, Español, 100% Anti-Ghosting, Macros, Multimedia, Perfiles", precio: "340", precioNormal: "390" },
     ];
 
-    const ColorsBWDiv = "bg-gray-100 dark:bg-black"
+    const ColorsBWDiv = "bg-gray-100 dark:bg-black";
+
+    `const handleAddToWishlist = async (productId) => {
+        try {
+          const { data } = await addToWishlistMutation({
+            variables: { productId },
+          });
+    
+          // Puedes manejar la respuesta de la mutación según tus necesidades
+          console.log(data.addToWishlist.message);
+    
+          // También puedes realizar actualizaciones locales si es necesario
+        } catch (error) {
+          console.error('Error al agregar a la lista de deseos', error);
+        }
+      }; `
+
 
     return (
         <>

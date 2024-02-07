@@ -10,51 +10,53 @@ import { useDeleteUserMutation, useGetUsersQuery } from '../../../graphql/genera
 
 const AdminUser = () => {
 
-  // const { data: usersData, loading: usersLoading, error: usersError } = useGetUsersQuery();
-  // const [deleteUserMutation] = useDeleteUserMutation();
 
-  // const formatDate = (dateString: string): string => {
-  //   const options: Intl.DateTimeFormatOptions = {
-  //     year: 'numeric',
-  //     month: 'long',
-  //     day: 'numeric',
-  //     hour: 'numeric',
-  //     minute: 'numeric',
-  //     second: 'numeric'
-  //   };
+  
+ `const { data: usersData, loading: usersLoading, error: usersError } = useGetUsersQuery();
+   const [deleteUserMutation] = useDeleteUserMutation();
 
-  //   const formattedDate: string = new Date(dateString).toLocaleDateString('en-ES', options);
-  //   return formattedDate;
-  // };
+   const formatDate = (dateString: string): string => {
+     const options: Intl.DateTimeFormatOptions = {
+       year: 'numeric',
+       month: 'long',
+       day: 'numeric',
+       hour: 'numeric',
+       minute: 'numeric',
+       second: 'numeric'
+     };
 
-  // const handleDeleteUser = async (userUuid: any) => {
-  //   try {
-  //     // Llamar a la mutación para borrar el usuario
-  //     await deleteUserMutation({
-  //       variables: {
-  //         uuid: userUuid,
-  //       },
-  //       // Puedes agregar más opciones como refetchQueries para actualizar automáticamente la lista de usuarios después de eliminar uno
-  //     });
+     const formattedDate: string = new Date(dateString).toLocaleDateString('en-ES', options);
+     return formattedDate;
+   };
 
-  //     // Realizar cualquier acción adicional después de borrar el usuario si es necesario
+ const handleDeleteUser = async (userUuid: any) => {
+     try {
+       Llamar a la mutación para borrar el usuario
+       await deleteUserMutation({
+       variables: {
+           uuid: userUuid,
+         },
+         // Puedes agregar más opciones como refetchQueries para actualizar automáticamente la lista de usuarios después de eliminar uno
+       });
 
-  //   } catch (error) {
-  //     console.error('Error al eliminar el usuario:', error);
-  //     // Manejar el error según tus necesidades
-  //   }
-  // };
+       // Realizar cualquier acción adicional después de borrar el usuario si es necesario
+
+     } catch (error) {
+       console.error('Error al eliminar el usuario:', error);
+       // Manejar el error según tus necesidades
+     }
+   };
 
 
-  // if (usersLoading) {
-  //   return <p>Cargando usuarios...</p>;
-  // }
+   if (usersLoading) {
+     return <p>Cargando usuarios...</p>;
+   }
 
-  // if (usersError) {
-  //   return <p>Error al cargar usuarios: {usersError.message}</p>;
-  // }
-  // const bodytext = "text-center py-2 px-4 border-b border-grey-light"
-  // const headtext = "py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light"
+   if (usersError) {
+    return <p>Error al cargar usuarios: {usersError.message}</p>;
+   }
+   const bodytext = "text-center py-2 px-4 border-b border-grey-light"
+   const headtext = "py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light" `
 
 
   const handlePrint = () => {

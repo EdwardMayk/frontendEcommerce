@@ -12,6 +12,7 @@ interface ProductProps {
 }
 
 const Favorite: React.FC = () => {
+  
   return (
     <>
       <Navbar />
@@ -29,6 +30,7 @@ const Favorite: React.FC = () => {
     </>
   );
 };
+
 
 const ProductCard: React.FC<ProductProps> = ({ title, description, price, code }) => (
   <div className="max-w-md mx-auto bg-white shadow-lg rounded-md overflow-hidden my-8 text-black">

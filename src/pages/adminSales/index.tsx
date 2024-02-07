@@ -6,8 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faL, faPrint, faSearch, faXmark, faCircleUser, faPenToSquare, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import { AdminBar } from '../adminNavBar';
+import { useDeleteUserMutation, useGetUsersQuery } from '../../../graphql/generated/schema';
 
 const adminVenta = () => {
+  ` const { data: usersData, loading: usersLoading, error: usersError } = useGetUsersQuery();
+  const [deleteUserMutation] = useDeleteUserMutation(); `
 
   const formatDate = (dateString: string): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -24,7 +27,7 @@ const adminVenta = () => {
   };
 
   const handlePrint = () => {
-    window.print();
+    
   };
 
   const tableItemsSold = [
